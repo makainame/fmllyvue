@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    约课
+    约课sjdfkhjksghkjfbe
   </div>
 </template>
 
