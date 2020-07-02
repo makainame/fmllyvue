@@ -9,7 +9,35 @@ Vue.config.productionTip = false
 Vue.prototype.$axios=axios
 import 'amfe-flexible';
 Vue.use(Vant);
-
+// 自定义全局拖拽指令
+Vue.directive('drag', {
+    inserted: function (el) {
+      el.onmousedown=function(ev){
+        var disX=ev.clientX-el.offsetLeft;
+        var disY=ev.clientY-el.offsetTop;
+        document.onmousemove=function(ev){
+          var l=ev.clientX-disX;
+          var t=ev.clientY-disY;
+          el.style.left=l+'px';
+          el.style.top=t+'px';
+        };
+        document.onmouseup=function(){
+          document.onmousemove=null;
+          document.onmouseup=null;
+  
+        };
+      };
+    }
+  
+  })
+// / 编程导航 自定义指令
+Vue.directive("jump",(el,{value},vnode)=>{
+        el.onclick=(()=>{
+            vnode.context.$router.push({
+                path:value
+            })
+        })
+})
 // 请求拦截器
 axios.interceptors.request.use(
   config => {             // 一些配置信息，里面包含url地址，请求的参数，是否延迟，请求方式等等
@@ -43,33 +71,7 @@ axios.interceptors.request.use(
   }
   );
    
-//  自定义指令拖拽
-  Vue.directive('drag',function(el){
-    el.onmousedown=function(e){
-      //获取鼠标点击处分别与div左边和上边的距离：鼠标位置-div位置
-      var disX=e.clientX-el.offsetLeft;
-      var disY=e.clientY-el.offsetTop;
-      console.log(disX,disY);
-  
-      //包含在onmousedown里面，表示点击后才移动，为防止鼠标移出div，使用document.onmousemove，点击后再移动
-      //使用document.onmousemove，不要使用el.onmousemmove
-      //在这个文档里出不去
-      document.onmousemove=function(e){
-        //获取移动后div的位置：鼠标位置-disX/disY
-        var l=e.clientX-disX;
-        var t=e.clientY-disY;
-        el.style.left=l+'px';      //必须要有单位
-        el.style.top=t+'px';
-      }
-  
-      //停止移动，鼠标弹起
-      document.onmouseup=function(e){
-        document.onmousemove=null;
-        document.onmouseup=null;
-      }
-  
-    }
-  });
+
 
 
 new Vue({

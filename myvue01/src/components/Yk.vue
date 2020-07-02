@@ -5,8 +5,11 @@
 </template>
 
 <script>
+
 export default {
-  components: {},
+  components: {
+   
+  },
   props: {},
   data() {
     return {
