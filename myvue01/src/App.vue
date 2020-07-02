@@ -42,7 +42,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
+*{
+  margin:0;
+  padding:0;
+}
  .xf{
     width: 0.4rem;
  }
