@@ -5,6 +5,8 @@ import Lx from'@/components/Lx'
 import Kc from'@/components/Kc'
 import Wd from'@/components/Wd'
 import Yk from'@/components/Yk'
+import Deles from'@/page/Deles'
+// import { component } from 'vue/types/umd'
 Vue.use(Router)
 export default new Router({
 
@@ -29,6 +31,10 @@ export default new Router({
         {
             path:"/lx",
             component:Lx
+        },
+        {
+             path:"/deles",
+            component:Deles
         }
      ]
 })

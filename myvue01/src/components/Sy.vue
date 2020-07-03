@@ -96,17 +96,18 @@
                 </div>
          </li>
        </ul>
-        
+         <xf></xf>
      </div>
-     <div class="xf">
-      <van-icon name="envelop-o" color="#ffffff" class="xfs" size="30"/>
-     </div>
+    
   </div>
 </template>
 
 <script>
+import xf from'../page/Xf'
 export default {
-  components: {},
+  components: {
+     xf,
+  },
   props: {},
   data() {
     return {
@@ -463,17 +464,5 @@ export default {
   }
   
 }
-.xf{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  background:blue;
-  position:fixed;
-  bottom:100px;
-  right:30px;
- .xfs{
-   margin-top:15px;
-   margin-left:15px;
- }
-}
+
 </style>

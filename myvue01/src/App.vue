@@ -2,7 +2,8 @@
 <template>
   <div class="wrapper">
      <router-view />
-<van-tabbar route>
+     <xf></xf>
+  <van-tabbar route >
   <van-tabbar-item replace to="/" icon="home-o">
     首页
   </van-tabbar-item>
@@ -21,14 +22,16 @@
     我的
   </van-tabbar-item>
 </van-tabbar>
-<div class="xf" v-drag></div>
-
+    <xf></xf>
   </div>
 </template>
 
 <script>
+import xf from'./page/Xf'
 export default {
-  components: {},
+  components: {
+    xf,
+  },
   props: {},
   data() {
     return {
@@ -47,8 +50,6 @@ export default {
   padding:0;
   list-style: none;
 }
- .xf{
-    width: 0.4rem;
- }
+
 
 </style>
