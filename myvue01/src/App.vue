@@ -45,6 +45,7 @@ export default {
 *{
   margin:0;
   padding:0;
+  list-style: none;
 }
  .xf{
     width: 0.4rem;
