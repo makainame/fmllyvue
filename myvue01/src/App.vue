@@ -1,6 +1,6 @@
 
 <template>
-  <div class="wrapper">
+  <div id="app">
      <router-view />
      <xf></xf>
   <van-tabbar route >
@@ -44,11 +44,17 @@ export default {
   mounted() {}
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 *{
   margin:0;
   padding:0;
   list-style: none;
+}
+#app{
+  height:100%;
+}
+html,body{
+  height:100%
 }
 
 
