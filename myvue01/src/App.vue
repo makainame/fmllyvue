@@ -31,6 +31,7 @@ import xf from'./page/Xf'
 export default {
   components: {
     xf,
+    
   },
   props: {},
   data() {

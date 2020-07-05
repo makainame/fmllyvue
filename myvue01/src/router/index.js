@@ -6,6 +6,10 @@ import Kc from'@/components/Kc'
 import Wd from'@/components/Wd'
 import Yk from'@/components/Yk'
 import Deles from'@/page/Deles'
+import Pwd from'@/page/Pwd'
+import Zc from'@/page/Zc'
+import Pass from'@/page/Pass'
+import Detail from '@/page/Detail'
 // import { component } from 'vue/types/umd'
 Vue.use(Router)
 export default new Router({
@@ -22,7 +26,7 @@ export default new Router({
         },
         {
             path:"/wd",
-            component:Wd
+            component:Wd,
         },
         {
             path:"/yk",
@@ -35,6 +39,23 @@ export default new Router({
         {
              path:"/deles",
             component:Deles
+        },
+        {
+            path:"/pwd",
+           component:Pwd
+       },
+       {
+        path:"/zc",
+       component:Zc
+       },
+        {
+            path:"/pass",
+        component:Pass
+        },
+        {
+            path:'/detail',
+          
+            component:Detail
         }
      ]
 })

@@ -32,10 +32,13 @@
            </li>
        </ul>
      </div>
+    
       <div class="nav">
        <ul>
          <h3>名师阵容</h3>
-         <li v-for="(item,index) of content" :key="index">
+         <br>
+          <van-cell is-link @click="showPopup">
+         <li v-for="(item,index) of content" :key="index" >
              
                  <div class="left">
                    <img :src="item.img" alt="">
@@ -45,34 +48,46 @@
                   <p>{{ item.con }}</p>
                 </div>
          </li>
+          </van-cell>
        </ul>
         
      </div>
+    
      <div class="cons">
           <ul>
           <h3>精品课程</h3>
-          <li v-for="(item,index) of nav" :key="index">
+          <br>
+          <li v-for="(item,index) of nav" :key="index" v-detail='path'>
               <p>{{ item.news }}</p>
+              <br>
               <span>共{{item.count }}课时</span>
-              <p><img :src="item.img" alt="">{{ item.tit }}</p>
-             
+              <br>
+              <p>
+                <router-link to='/detail'><img :src="item.img" alt=""></router-link>{{ item.tit }}</p>
+               <br>
               <hr>
+              <br>
               <div class="bz">
                 <span>已有{{ item.spa }}报名</span>
                 <span class="mat">{{ item.con }}</span>
               </div>
           </li>
+        
         </ul>
      </div>
       <div class="cont">
           <ul>
           <h3>推荐课程</h3>
-          <li v-for="(item,index) of navs" :key="index">
+          <br>
+          <li v-for="(item,index) of navs" :key="index" v-detail='path'>
               <p>{{ item.news }}</p>
+              <br>
               <span>共{{item.count }}课时</span>
+              <br>
               <p><img :src="item.img" alt="">{{ item.tit }}</p>
-             
+              <br>
               <hr>
+              <br>
               <div class="bz">
                 <span>已有{{ item.spa }}报名</span>
                 <span class="mat">{{ item.con }}</span>
@@ -82,7 +97,10 @@
      </div>
       <div class="nav">
        <ul>
-         <h3>明星讲师</h3>
+         <h3>明星讲师</h3> 
+         
+         <br>
+          <van-cell is-link @click="showPopup">
          <li v-for="(item,index) of stars" :key="index">
              
                  <div class="left">
@@ -95,10 +113,24 @@
                   <p>{{ item.con }}</p>
                 </div>
          </li>
+         </van-cell>
        </ul>
          <xf></xf>
      </div>
+   <van-popup v-model="show">
+     <div class="tan">
+     
+        <h4>赶紧登陆一下吧</h4>
+     <p>预约一对一辅导，浏览更多视频课程~~</p>
+        <button class='btn'>
+          <router-link to='/wd'>立即登录
+            </router-link>
+          </button>
+     </div>
     
+    
+   
+   </van-popup>
   </div>
 </template>
 
@@ -111,6 +143,7 @@ export default {
   props: {},
   data() {
     return {
+      path:'/detail',
       content:[
         {
            img:'https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png',
@@ -175,6 +208,7 @@ export default {
       ],
        navs:[
         {
+          id:1,
           news:"每时每课初中数学—初一拓展-分式（一）",
           count:2,
           img:"https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019lp2BTH501V1571360737.jpeg",
@@ -183,6 +217,7 @@ export default {
           con:"免费"
         },
          {
+           id:2,
           news:"每时每课-初二物理-摩擦力",
           count:2,
           img:"https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
@@ -191,6 +226,7 @@ export default {
           con:"免费"
         },
          {
+           id:3,
           news:"每时每课-初二物理-牛顿第一定律＆二力平衡知识点",
           count:1,
           img:"https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
@@ -199,6 +235,7 @@ export default {
           con:"免费"
         },
          {
+           id:4,
           news:"每时每课-初一英语-where引导的特殊疑问句和on，in， under介词用法知识点",
           count:1,
           img:"https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
@@ -207,6 +244,7 @@ export default {
           con:"免费"
         },
          {
+           id:5,
           news:"每时每课-初二英语-频率副词知识点",
           count:1,
           img:"https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
@@ -266,11 +304,17 @@ export default {
        
 
       ],
+       show: false,
+       id:''
     };
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    showPopup() {
+      this.show = true;
+    }
+  },
   created() {},
   mounted() {}
 };
@@ -326,10 +370,11 @@ export default {
 }
 .nav{
   width:100%;
- margin-left:10px;
+//  margin-left:10px;
   display:flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
+  margin-bottom:50px;
   ul{
     width:100%;
     
@@ -340,11 +385,11 @@ export default {
       padding-left:10px;
     }
     li{
-      width:355px;
+      width:80%;
       height:81px;
       background:#ffffff;
       display:flex;
-      justify-content: center;
+      justify-content: space-around;
     align-items: center;
       margin-top:10px;
        img{
@@ -376,6 +421,7 @@ export default {
   display:flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom:50px;
   ul{
      width:100%;
         h3{
@@ -386,12 +432,13 @@ export default {
     }
       li{
      width:345px;
-     height:203px;
+     height:190px;
      background:#ffffff;
      flex-direction: row;
      flex-wrap:wrap;
      justify-content: space-around;
-     margin-top:10px;
+     align-items: append;
+     margin-top:20px;
      img{
        width:40px;
        height:40px;
@@ -423,6 +470,7 @@ export default {
   display:flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom:50px;
   ul{
      width:100%;
         h3{
@@ -464,5 +512,25 @@ export default {
   }
   
 }
-
+.btn{
+    width:250px;
+    height:40px;
+    color:#ffffff;
+    background:orange;
+    border:none;
+    border-radius:20px;
+    line-height:40px;
+    text-align: center;
+    font-size:16px;
+    font-weight:normal;
+    margin-left:10px;
+}
+.tan{
+  width:300px;
+  text-align:center;
+  img{
+    width:260px;
+    
+  }
+}
 </style>

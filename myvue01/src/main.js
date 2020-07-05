@@ -38,6 +38,13 @@ Vue.directive("jump",(el,{value},vnode)=>{
             })
         })
 })
+Vue.directive("detail",(el,{value},vnode)=>{
+  el.onclick=(()=>{
+      vnode.context.$router.push({
+          path:value
+      })
+  })
+})
 // 请求拦截器
 axios.interceptors.request.use(
   config => {             // 一些配置信息，里面包含url地址，请求的参数，是否延迟，请求方式等等
