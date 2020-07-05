@@ -19,14 +19,16 @@
           <img width=100% height=80% :src="item.pic" alt="">
         </div>
     </div>
+     <xf></xf>
   </div>
+  
 </template>
 
 <script>
-
+import xf from'../page/Xf'
 export default {
   components: {
-   
+   xf,
   },
   props: {},
   data() {

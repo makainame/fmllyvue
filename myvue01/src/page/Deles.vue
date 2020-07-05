@@ -1,6 +1,7 @@
 <template>
   <div class="wrap">
-    <div class="ly"><span>给我们留言</span><span>选项</span></div>
+      
+    <div class="ly"><span>给我们留言</span><span><van-icon name="arrow-down" /></span></div>
     <div class="cont">
       <p>
         您好，很抱歉我们暂时无法为您提供服务，如需帮助，请留言，我们将尽快联系并解决您的问题
@@ -15,8 +16,9 @@
       <input type="text" placeholder="请输入" />
     </div>
     <div class="bottom">
-      <button>提交</button>
+      <button v-jump="path">提交</button>
     </div>
+    
   </div>
 </template>
 
@@ -25,7 +27,9 @@ export default {
   components: {},
   props: {},
   data() {
-    return {};
+    return {
+      path:"/mkrouter"
+    };
   },
   watch: {},
   computed: {},

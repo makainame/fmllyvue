@@ -2,7 +2,6 @@
 <template>
   <div id="app">
      <router-view />
-     <xf></xf>
   <van-tabbar route >
   <van-tabbar-item replace to="/" icon="home-o">
     首页
@@ -22,15 +21,15 @@
     我的
   </van-tabbar-item>
 </van-tabbar>
-    <xf></xf>
+   
   </div>
 </template>
 
 <script>
-import xf from'./page/Xf'
+
 export default {
   components: {
-    xf,
+    
   },
   props: {},
   data() {
@@ -52,6 +51,7 @@ export default {
 }
 #app{
   height:100%;
+  position: relative;
 }
 html,body{
   height:100%

@@ -30,10 +30,15 @@
         </van-button>
       </div>
     </van-form>
+     <xf></xf>
   </div>
 </template>
 <script>
+import xf from'../page/Xf'
 export default {
+  components:{
+    xf,
+  },
    data() {
     return {
       username: '',

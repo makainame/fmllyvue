@@ -6,7 +6,8 @@ import Kc from'@/components/Kc'
 import Wd from'@/components/Wd'
 import Yk from'@/components/Yk'
 import Deles from'@/page/Deles'
-// import { component } from 'vue/types/umd'
+import Mkrouter from'@/page/Mkrouter'
+
 Vue.use(Router)
 export default new Router({
 
@@ -34,7 +35,12 @@ export default new Router({
         },
         {
              path:"/deles",
-            component:Deles
+            component:Deles,
+            
+        },
+        {
+            path:"/mkrouter",
+            component:Mkrouter
         }
      ]
 })
