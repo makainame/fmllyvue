@@ -13,13 +13,16 @@ Vue.use(Vant);
 Vue.directive('drag', {
     inserted: function (el) {
       el.onmousedown=function(ev){
+          console.log(el)
+          ev.stopPropagation()
         var disX=ev.clientX-el.offsetLeft;
         var disY=ev.clientY-el.offsetTop;
         document.onmousemove=function(ev){
+          ev.stopPropagation()
           var l=ev.clientX-disX;
           var t=ev.clientY-disY;
-          el.style.left=l+'px';
-          el.style.top=t+'px';
+          el.style.right=l+'px';
+          el.style.bottom=t+'px';
         };
         document.onmouseup=function(){
           document.onmousemove=null;

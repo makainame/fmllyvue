@@ -7,8 +7,7 @@
   <van-tabbar-item replace to="/" icon="home-o">
     首页
   </van-tabbar-item>
-  <van-tabbar-item replace to="/kc" icon="description
-">
+  <van-tabbar-item replace to="/kc" icon="description">
     课程
   </van-tabbar-item>
   <van-tabbar-item replace to="/yk" icon="coupon-o">
@@ -27,15 +26,16 @@
 </template>
 
 <script>
-import xf from'./page/Xf'
+// import xf from'./page/Xf'
 export default {
   components: {
-    xf,
+   
     
   },
   props: {},
   data() {
     return {
+    
     };
   },
   watch: {},

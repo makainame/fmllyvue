@@ -6,11 +6,15 @@ import Kc from'@/components/Kc'
 import Wd from'@/components/Wd'
 import Yk from'@/components/Yk'
 import Deles from'@/page/Deles'
+
 import Pwd from'@/page/Pwd'
 import Zc from'@/page/Zc'
 import Pass from'@/page/Pass'
 import Detail from '@/page/Detail'
 // import { component } from 'vue/types/umd'
+
+// import Mkrouter from'@/page/Mkrouter'
+
 Vue.use(Router)
 export default new Router({
 

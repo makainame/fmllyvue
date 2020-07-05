@@ -24,12 +24,16 @@
            <p>暂无模考安排，敬请期待</p>
          </div>  
       </div>
+       <xf></xf>
   </div>
 </template>
 
 <script>
+import xf from'../page/Xf'
 export default {
-  components: {},
+  components: {
+    xf,
+  },
   props: {},
   data() {
     return {

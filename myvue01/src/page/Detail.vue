@@ -6,6 +6,7 @@
   </template>
 </van-nav-bar>
   <button class='btn'>立即报名</button>
+  这是详情页面
   </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
     color:#ffffff;
     line-height:40px;
     position:fixed;
-    bottom:0px;
+    bottom:10px;
     font-size:16px;
     font-weight:normal;
     text-align: center;
