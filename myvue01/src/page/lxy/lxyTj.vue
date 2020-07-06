@@ -83,7 +83,7 @@ export default {
     height: 100%;
     .lxy_bt{
         width: 100%;
-        height: 8%;
+        height: 50px;
         display: flex;
         align-items: center;
       p{

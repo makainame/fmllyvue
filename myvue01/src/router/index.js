@@ -5,6 +5,7 @@ import Lx from'@/components/Lx'
 import Kc from'@/components/Kc'
 import Wd from'@/components/Wd'
 import Yk from'@/components/Yk'
+import Home from'@/components/Home'
 import Deles from'@/page/Deles'
 
 import Pwd from'@/page/Pwd'
@@ -23,46 +24,69 @@ import lxyTj from'@/page/lxy/lxyTj'
 
 // import Mkrouter from'@/page/Mkrouter'
 
+import Qdfss from'@/page/qdf/Qdfss'
+import Qdfxqy from'@/page/qdf/Qdfxqy'
+import Qdfjsxq from '@/page/qdf/Qdfjsxq'
+import Qdfxx from '@/page/qdf/Qdfxx'
+ // import { component } from 'vue/types/umd'
 Vue.use(Router)
 export default new Router({
 
 
     routes:[
-         {
-             path:"/",
-             component:Sy
-         },
-         {
-            path:"/kc",
-            component:Kc
+        {
+            path:"/",
+            name:"Home",
+            redirect:"/home"
         },
         {
-            path:"/wd",
-            component:Wd,
+               path:"/home",
+               name:"Home",
+               component:Home,
+               redirect:"/home/sy",
+               children:[
+                {
+                    path:"sy",
+                    component:Sy
+                },
+                {
+                   path:"kc",
+                   component:Kc
+               },
+               {
+                   path:"wd",
+                   component:Wd
+               },
+               {
+                   path:"yk",
+                   component:Yk
+               },
+               {
+                   path:"lx",
+                   component:Lx
+               },
+               ] 
         },
-        {
-            path:"/yk",
-            component:Yk
-        },
-        {
-            path:"/lx",
-            component:Lx
-        },
+
+         
         {
              path:"/deles",
             component:Deles
         },
         {
-            path:"/pwd",
-           component:Pwd
-       },
-       {
-        path:"/zc",
-       component:Zc
-       },
+            path:"/qdfss",
+            name:'qdfss',
+            component:Qdfss
+        },
         {
-            path:"/pass",
-        component:Pass
+            path:"/qdfxqy",
+            name:'qdfxqy',
+            component:Qdfxqy
+        },
+        {
+            path:"/qdfjsxq",
+            name:'qdfjsxq',
+            component:Qdfjsxq
         },
         {
             path:'/detail',
@@ -93,5 +117,22 @@ export default new Router({
             path:"/lxyxt",//习题收藏
             component:lxyXt
         },
+        {
+            path:"/pwd",
+            component:Pwd
+        },
+        {
+            path:"/zc",
+            component:Zc
+        },
+        {
+            path:"/pass",
+            component:Pass
+        },
+        {
+            path:"/qdfxx",
+            name:'qdfxx',
+            component:Qdfxx
+        }
      ]
 })

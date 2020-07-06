@@ -138,7 +138,7 @@ export default {
     height: 100%;
     .lxy_bt{
         width: 100%;
-        height: 8%;
+        height: 50px;
         display: flex;
         align-items: center;
       p{
@@ -150,7 +150,7 @@ export default {
     }
     .lxy_inp{
         width: 92%;
-        height: 9%;
+        height: 60px;
         display: flex;
         padding-left: 8%;
         border-bottom: 2px solid #F7F8FA;
@@ -172,7 +172,7 @@ export default {
     }
     .lxy_lb{
         width: 100%;
-        height: 82%;
+        height: 560px;
         display: flex;
         .lxy_left{
             width: 24%;
