@@ -2,7 +2,7 @@
 <template>
   <div id="app">
      <router-view />
-     <xf></xf>
+     <!-- <xf></xf> -->
   <van-tabbar route >
   <van-tabbar-item replace to="/" icon="home-o">
     首页
@@ -21,7 +21,7 @@
     我的
   </van-tabbar-item>
 </van-tabbar>
-    <xf></xf>
+    <!-- <xf></xf> -->
   </div>
 </template>
 

@@ -11,6 +11,14 @@ import Pwd from'@/page/Pwd'
 import Zc from'@/page/Zc'
 import Pass from'@/page/Pass'
 import Detail from '@/page/Detail'
+
+import lxyFz from'@/page/lxy/lxyFz'
+import lxyCp from'@/page/lxy/lxyCp'
+import lxyCt from'@/page/lxy/lxyCt'
+import lxyKd from'@/page/lxy/lxyKd'
+import lxyXt from'@/page/lxy/lxyXt'
+import lxyTj from'@/page/lxy/lxyTj'
+
 // import { component } from 'vue/types/umd'
 
 // import Mkrouter from'@/page/Mkrouter'
@@ -60,6 +68,30 @@ export default new Router({
             path:'/detail',
           
             component:Detail
-        }
+        },
+        {
+            path:"/lxykd",//考点专练
+            component:lxyKd
+        },
+        {
+            path:"/lxytj",//套卷练习
+            component:lxyTj
+        },
+        {
+            path:"/lxyfz",//仿真模考
+            component:lxyFz
+        },
+        {
+            path:"/lxyct",//错题练习
+            component:lxyCt
+        },
+        {
+            path:"/lxycp",//测评记录
+            component:lxyCp
+        },
+        {
+            path:"/lxyxt",//习题收藏
+            component:lxyXt
+        },
      ]
 })
