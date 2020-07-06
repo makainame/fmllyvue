@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
       
-       <div class="xf"   v-jump="path" v-drag>
+       <div class="xf"   v-jump="path" >
       <van-icon  name="envelop-o" color="#ffffff" class="xfs" size="30" />
      </div>
   </div>

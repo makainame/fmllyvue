@@ -35,16 +35,13 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  components: {},
-=======
+
 import xf from'../page/Xf'
 export default {
   components: {
    xf,
   },
->>>>>>> 1ad0a07a1e5e3ba8b4424eed39bb166c579fdbae
+
   props: {},
   data() {
     return {

@@ -28,7 +28,7 @@ export default {
   props: {},
   data() {
     return {
-      path:"/mkrouter"
+      path:"/mkroute"
     };
   },
   watch: {},
