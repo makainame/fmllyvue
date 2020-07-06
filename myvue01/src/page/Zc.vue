@@ -1,0 +1,92 @@
+<template>
+  <div class="zc">
+    <van-nav-bar title="注册登录" left-arrow @click-left="onClickLeft" />
+    <div class="imgas">
+      <img
+        src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png"
+        alt
+      />
+    </div>
+    <br><br>
+    <van-field v-model="tel" type="tel" label="手机号" placeholder="请输入手机号" show-error-message>
+      <template #button>
+        <van-button size="small" type="primary">发送验证码</van-button>
+      </template>
+    </van-field>
+    <br>
+    <van-field
+      v-model="sms"
+      center
+      clearable
+      show-error-message
+      label="短信验证码"
+      placeholder="请输入短信验证码"
+    ></van-field>
+    <br>
+    <div class="bz">
+      <span>未注册的手机号会被自动注册</span>
+      <span>
+        <router-link to="/pass">用密码登录</router-link>
+      </span>
+    </div>
+  
+    <button class='btn'>登录</button>
+  </div>
+</template>
+
+<script>
+export default {
+  components: {},
+  props: {},
+  data() {
+    return {
+      tel: "",
+      phone: "",
+      sms: ""
+    };
+  },
+  watch: {},
+  computed: {},
+  methods: {
+    onClickLeft() {
+      this.$router.go(-1);
+    }
+  },
+  created() {},
+  mounted() {}
+};
+</script>
+<style lang="scss" scoped>
+.imgas {
+  margin-top: 100px;
+  margin-left: 50px;
+  display: inline-block;
+  img {
+    width: 236px;
+    height: 52px;
+  }
+}
+.bz {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+  align-items: center;
+  color: #cccc;
+}
+.btn{
+    width:350px;
+    height:40px;
+    color:#ffffff;
+    background:orange;
+    border:none;
+    border-radius:20px;
+    line-height:40px;
+    text-align: center;
+    font-size:16px;
+    font-weight:normal;
+    margin-left:10px;
+}
+</style>

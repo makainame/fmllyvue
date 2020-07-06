@@ -13,6 +13,7 @@ Vue.use(Vant)
 Vue.directive('drag', {
     inserted: function (el) {
       el.onmousedown=function(ev){
+<<<<<<< HEAD
         var disX=ev.clientX-el.offsetLeft
         var disY=ev.clientY-el.offsetTop
         document.onmousemove = function (ev) {
@@ -21,6 +22,19 @@ Vue.directive('drag', {
           el.style.left=l+'px'
           el.style.top=t+'px'
         }
+=======
+          console.log(el)
+          ev.stopPropagation()
+        var disX=ev.clientX-el.offsetLeft;
+        var disY=ev.clientY-el.offsetTop;
+        document.onmousemove=function(ev){
+          ev.stopPropagation()
+          var l=ev.clientX-disX;
+          var t=ev.clientY-disY;
+          el.style.right=l+'px';
+          el.style.bottom=t+'px';
+        };
+>>>>>>> 1ad0a07a1e5e3ba8b4424eed39bb166c579fdbae
         document.onmouseup=function(){
           document.onmousemove=null
           document.onmouseup=null
@@ -35,6 +49,13 @@ Vue.directive("jump",(el,{value},vnode)=>{
                 path:value
             })
         })
+})
+Vue.directive("detail",(el,{value},vnode)=>{
+  el.onclick=(()=>{
+      vnode.context.$router.push({
+          path:value
+      })
+  })
 })
 // 请求拦截器
 axios.interceptors.request.use(

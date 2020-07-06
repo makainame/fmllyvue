@@ -3,6 +3,7 @@
     <div class="imgas">
       <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png" alt="">
     </div>
+    <br><br>
         <van-form @submit="onSubmit">
       <van-field
         v-model="username"
@@ -20,20 +21,23 @@
         colon:true
         :rules="[{ required: true, message: '请填写密码' }]"
       />
+      <br>
       <div class="bz">
-        <span>找回密码</span>
-        <span>注册/验证码登录</span>
+        <span><router-link to='/pwd'>找回密码</router-link></span>
+        <span> <router-link to='/zc'>注册/验证码登录</router-link></span>
       </div>
-      <div style="margin: 16px;">
-        <van-button round block type="info" native-type="submit">
-          登录
-        </van-button>
-      </div>
+      
+       <button class='btn'>登录</button>
     </van-form>
+     <xf></xf>
   </div>
 </template>
 <script>
+import xf from'../page/Xf'
 export default {
+  components:{
+    xf,
+  },
    data() {
     return {
       username: '',
@@ -44,6 +48,7 @@ export default {
     onSubmit(values) {
       console.log('submit', values);
     },
+   
   },
 }
 </script>
@@ -51,7 +56,7 @@ export default {
 
   .imgas{
    
-    margin-top:100px;
+    margin-top:50px;
     margin-left:50px;
     display:inline-block;
     img{
@@ -64,9 +69,22 @@ export default {
     height:30px;
     line-height:30px;
     display:flex;
-  justify-content: space-between;
+  justify-content: space-around;
  font-size:14px;
  align-items: center;
  color:#cccc;
   }
+  .btn{
+    width:350px;
+    height:40px;
+    color:#ffffff;
+    background:orange;
+    border:none;
+    border-radius:20px;
+    line-height:40px;
+    text-align: center;
+    font-size:16px;
+    font-weight:normal;
+    margin-left:10px;
+}
 </style>

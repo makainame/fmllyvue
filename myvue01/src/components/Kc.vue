@@ -2,7 +2,7 @@
   <div class="kc">
     <van-nav-bar class title="特色课">
       <template #right>
-        <van-icon name="search" size="18" />
+        <van-icon name="search" size="18" @click="go_ss()"/>
       </template>
     </van-nav-bar>
     <van-dropdown-menu>
@@ -11,7 +11,7 @@
       <van-dropdown-item v-model="value3" :options="option3" />
     </van-dropdown-menu>
     <ul class="qdf_ul">
-      <li class="qdf_li" v-for="item of qdf_nav" :key="item.index">
+      <li class="qdf_li" v-for="item of qdf_nav" :key="item.index" @click="qdf_tzxqy()">
         <p class="qdf_title">
           <font>{{item.news}}</font>
           </p>
@@ -33,12 +33,16 @@
           </p>
       </li>
     </ul>
+     <xf></xf>
   </div>
 </template>
 
 <script>
+import xf from'../page/Xf'
 export default {
-  components: {},
+  components: {
+    xf,
+  },
   props: {},
   data() {
     return {
@@ -116,7 +120,14 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    go_ss(){
+      this.$router.push("/qdfss")
+    },
+    qdf_tzxqy(){
+        this.$router.push("/qdfxqy")
+    }
+  },
   created() {},
   mounted() {}
 };
