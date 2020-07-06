@@ -1,11 +1,14 @@
-import Vue from'vue'
-import Router from'vue-router'
-import Sy from'@/components/Sy'
-import Lx from'@/components/Lx'
-import Kc from'@/components/Kc'
-import Wd from'@/components/Wd'
-import Yk from'@/components/Yk'
-import Deles from'@/page/Deles'
+import Vue from 'vue'
+import Router from 'vue-router'
+import Sy from '@/components/Sy'
+import Lx from '@/components/Lx'
+import Kc from '@/components/Kc'
+import Wd from '@/components/Wd'
+import Yk from '@/components/Yk'
+import Deles from '@/page/Deles'
+import Oto from '@/page/Oto'
+
+
 // import { component } from 'vue/types/umd'
 Vue.use(Router)
 export default new Router({
@@ -35,6 +38,11 @@ export default new Router({
         {
              path:"/deles",
             component:Deles
-        }
+        },
+        {
+            path:"/oto",
+           component:Oto
+        },
+     
      ]
 })

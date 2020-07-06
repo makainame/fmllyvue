@@ -1,5 +1,5 @@
-
 <template>
+
   <div id="app">
      <router-view />
      <xf></xf>
@@ -24,6 +24,7 @@
 </van-tabbar>
     <xf></xf>
   </div>
+  
 </template>
 
 <script>
