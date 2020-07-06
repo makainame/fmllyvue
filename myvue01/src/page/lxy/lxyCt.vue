@@ -3,7 +3,7 @@
         <div class="lxy_bt">
            <van-icon name="arrow-left" size="24" color="#595959" @click="lxy_fh" />
            <p>错题练习</p>
-            <van-icon name="search" size="24" color="#595959" />
+            <van-icon name="search" size="24" color="#595959"  @click="lxy_ss"/>
        </div>
        <div class="lxy_nav">
            <van-dropdown-menu  active-color="#eb6100">
@@ -68,6 +68,10 @@ export default {
        showPopup() {
         this.show = true;
         },
+        //搜索页面
+       lxy_ss(){
+           this.$router.push("/qdfss")
+       }
    },
    //生命周期 - 创建完成（可以访问当前this实例）
    created() {
