@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
       
-       <div class="xf"   v-jump="path" >
+       <div class="xf"   v-jump="path" v-drag>
       <van-icon  name="envelop-o" color="#ffffff" class="xfs" size="30" />
      </div>
   </div>
@@ -31,9 +31,10 @@ export default {
   height:60px;
   border-radius:50%;
   background:blue;
-  position:fixed;
-  bottom:100px;
-  right:30px;
+  position: fixed;
+  right: 30px;
+  bottom: 100px;
+
  .xfs{
    margin-top:15px;
    margin-left:15px;

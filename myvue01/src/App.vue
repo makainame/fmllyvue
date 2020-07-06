@@ -1,6 +1,6 @@
 
 <template>
-  <div class="wrapper">
+  <div id="app">
      <router-view />
     
   
@@ -17,6 +17,7 @@ export default {
   props: {},
   data() {
     return {
+    
     };
   },
   watch: {},
