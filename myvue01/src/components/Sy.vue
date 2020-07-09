@@ -370,13 +370,8 @@ export default {
 }
 .nav{
   width:100%;
-<<<<<<< HEAD
    padding-left:10px;
     box-sizing:border-box;
-=======
-padding-left:10px;
-box-sizing:border-box;
->>>>>>> 80ec72c3868fad519171537e5f0bef991fccd1fb
   display:flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -423,13 +418,8 @@ box-sizing:border-box;
 }
 .cons{
    width:100%;
-<<<<<<< HEAD
     padding-left:10px;
     box-sizing:border-box;
-=======
-   padding-left:10px;
-box-sizing:border-box;
->>>>>>> 80ec72c3868fad519171537e5f0bef991fccd1fb
   display:flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -478,13 +468,8 @@ box-sizing:border-box;
 }
 .cont{
    width:100%;
-<<<<<<< HEAD
     padding-left:10px;
     box-sizing:border-box;
-=======
-   padding-left:10px;
-  box-sizing:border-box;
->>>>>>> 80ec72c3868fad519171537e5f0bef991fccd1fb
   display:flex;
   justify-content: center;
   flex-wrap: wrap;
