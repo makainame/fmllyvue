@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import Vue from 'vue'
 import Router from 'vue-router'
 import Sy from '@/components/Sy'
@@ -8,17 +8,10 @@ import Wd from '@/components/Wd'
 import Yk from '@/components/Yk'
 import Deles from '@/page/Deles'
 import Oto from '@/page/Oto'
+import Otoplan from '@/page/Otoplan'
 
-=======
-import Vue from'vue'
-import Router from'vue-router'
-import Sy from'@/components/Sy'
-import Lx from'@/components/Lx'
-import Kc from'@/components/Kc'
-import Wd from'@/components/Wd'
-import Yk from'@/components/Yk'
 import Home from'@/components/Home'
-import Deles from'@/page/Deles'
+
 
 import Pwd from'@/page/Pwd'
 import Zc from'@/page/Zc'
@@ -31,7 +24,7 @@ import lxyCt from'@/page/lxy/lxyCt'
 import lxyKd from'@/page/lxy/lxyKd'
 import lxyXt from'@/page/lxy/lxyXt'
 import lxyTj from'@/page/lxy/lxyTj'
->>>>>>> 1ad0a07a1e5e3ba8b4424eed39bb166c579fdbae
+
 
 // import { component } from 'vue/types/umd'
 
@@ -102,7 +95,6 @@ export default new Router({
             component:Qdfjsxq
         },
         {
-<<<<<<< HEAD
              path:"/deles",
             component:Deles
         },
@@ -110,10 +102,12 @@ export default new Router({
             path:"/oto",
            component:Oto
         },
-     
-=======
+        {
+            path:"/Otoplan",
+           component:Otoplan
+        },
+        {
             path:'/detail',
-          
             component:Detail
         },
         {
@@ -157,6 +151,5 @@ export default new Router({
             name:'qdfxx',
             component:Qdfxx
         }
->>>>>>> 1ad0a07a1e5e3ba8b4424eed39bb166c579fdbae
      ]
 })

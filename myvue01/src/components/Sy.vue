@@ -370,7 +370,8 @@ export default {
 }
 .nav{
   width:100%;
-//  margin-left:10px;
+   padding-left:10px;
+    box-sizing:border-box;
   display:flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -417,7 +418,8 @@ export default {
 }
 .cons{
    width:100%;
-    margin-left:10px;
+    padding-left:10px;
+    box-sizing:border-box;
   display:flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -466,7 +468,8 @@ export default {
 }
 .cont{
    width:100%;
-    margin-left:10px;
+    padding-left:10px;
+    box-sizing:border-box;
   display:flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -532,5 +535,9 @@ export default {
     width:260px;
     
   }
+}
+h3{
+  padding:0 !important;
+  box-sizing:border-box !important;
 }
 </style>

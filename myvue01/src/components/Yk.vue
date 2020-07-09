@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div id="great">
     <!-- 顶部 -->
     <div class="div_top">约课记录</div>
     <!-- 导航标题部分 -->
@@ -29,22 +29,15 @@
         <button @click="yueke" v-show="item.btnactive">{{ item.btn }}</button>
       </div>
     </div>
-     <xf></xf>
+    
   </div>
   
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  components: {},
-=======
-import xf from'../page/Xf'
 export default {
   components: {
-   xf,
   },
->>>>>>> 1ad0a07a1e5e3ba8b4424eed39bb166c579fdbae
   props: {},
   data() {
     return {
@@ -84,9 +77,17 @@ export default {
           btnactive: false //控制立即约课按钮的显示隐藏
         }
       ],
-      activeIndex: 0,
+      activeIndex:0,
       id: "",
-      list: []
+      list: [
+        {
+          _id: 1,
+          pic: require("../../public/img/sl01.png"),
+          name: "还没有待上课记录哦",
+          btn: "立即约课",
+          btnactive: false //控制立即约课按钮的显示隐藏
+        }
+      ]
     };
   },
   watch: {},
@@ -94,6 +95,7 @@ export default {
   methods: {
     // 点击切换样式以及对应的内容的过滤
     toogle(index) {
+      this.activeIndex = index;
       console.log(this.arr[index].c_id);
       this.id = this.arr[index].c_id;
       console.log(this.id);
@@ -103,7 +105,6 @@ export default {
       console.log(newarr);
       this.list = newarr;
       console.log(this.list);
-      this.activeIndex = index;
       this.btnactive = true; //控制立即约课按钮的显示隐藏
     },
     // 点击立即约课
@@ -113,18 +114,22 @@ export default {
       });
     }
   },
-  created() {},
+  created() {
+    
+  },
   mounted() {}
 };
 </script>
 <style lang="scss" scoped>
-.wrapper {
-  height: 100%;
+html,body{
+  height:100%;
+}
+#great{
+  height:100%;
 }
 .div_top {
   width: 100%;
   height: 69px;
-  // background-color: green;
   text-align: center;
   font-size: 20px;
   color: #666;
@@ -133,7 +138,6 @@ export default {
 .div_head {
   width: 100%;
   height: 53px;
-  // background-color: red;
 }
 .div_head > ul {
   width: 100%;
