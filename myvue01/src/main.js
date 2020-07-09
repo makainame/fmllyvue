@@ -9,6 +9,7 @@ Vue.config.productionTip = false
 Vue.prototype.$axios=axios
 import 'amfe-flexible'
 Vue.use(Vant)
+
 // 自定义全局拖拽指令
 
 // 请求拦截器

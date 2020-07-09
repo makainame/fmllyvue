@@ -35,9 +35,18 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+import xf from'../page/Xf'
+>>>>>>> 80ec72c3868fad519171537e5f0bef991fccd1fb
 export default {
   components: {
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 80ec72c3868fad519171537e5f0bef991fccd1fb
   props: {},
   data() {
     return {
