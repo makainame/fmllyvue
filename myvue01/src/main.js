@@ -10,7 +10,7 @@ Vue.prototype.$axios=axios
 import 'amfe-flexible'
 Vue.use(Vant)
 
-// 自定义全局拖拽指令
+// 拖拽
 
 // 请求拦截器
 axios.interceptors.request.use(
