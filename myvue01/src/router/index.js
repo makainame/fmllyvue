@@ -7,9 +7,8 @@ import Kc from '@/components/Kc'
 import Wd from '@/components/Wd'
 import Yk from '@/components/Yk'
 import Deles from '@/page/Deles'
-import Mkrouter from '@/page/Mkrouter'
 import Oto from '@/page/Oto'
-
+import Otoplan from '@/page/Otoplan'
 
 import Home from'@/components/Home'
 
@@ -18,6 +17,7 @@ import Pwd from'@/page/Pwd'
 import Zc from'@/page/Zc'
 import Pass from'@/page/Pass'
 import Detail from '@/page/Detail'
+import Smspwd from '@/page/Sms-pwd'
 
 import lxyFz from'@/page/lxy/lxyFz'
 import lxyCp from'@/page/lxy/lxyCp'
@@ -27,15 +27,17 @@ import lxyXt from'@/page/lxy/lxyXt'
 import lxyTj from'@/page/lxy/lxyTj'
 
 
+// import { component } from 'vue/types/umd'
 
+// import Mkrouter from'@/page/Mkrouter'
 
 import Qdfss from'@/page/qdf/Qdfss'
 import Qdfxqy from'@/page/qdf/Qdfxqy'
 import Qdfjsxq from '@/page/qdf/Qdfjsxq'
 import Qdfxx from '@/page/qdf/Qdfxx'
- 
+ // import { component } from 'vue/types/umd'
 Vue.use(Router)
-  export default new Router({
+export default new Router({
 
 
     routes:[
@@ -44,7 +46,7 @@ Vue.use(Router)
             name:"Home",
             redirect:"/home"
         },
-            {
+        {
                path:"/home",
                name:"Home",
                component:Home,
@@ -71,16 +73,12 @@ Vue.use(Router)
                    component:Lx
                },
                ] 
-            },
+        },
 
          
         {
              path:"/deles",
             component:Deles
-        },
-        {
-             path:"/mkroute",
-             component:Mkrouter
         },
         {
             path:"/qdfss",
@@ -98,7 +96,6 @@ Vue.use(Router)
             component:Qdfjsxq
         },
         {
-
              path:"/deles",
             component:Deles
         },
@@ -106,10 +103,12 @@ Vue.use(Router)
             path:"/oto",
            component:Oto
         },
-     
+        {
+            path:"/Otoplan",
+           component:Otoplan
+        },
         {
             path:'/detail',
-          
             component:Detail
         },
         {
@@ -137,22 +136,26 @@ Vue.use(Router)
             component:lxyXt
         },
         {
-            path:"/pwd",
+            path:"/pwd",//找回密码
             component:Pwd
         },
         {
-            path:"/zc",
+            path:"/zc",//注册页面
             component:Zc
         },
         {
-            path:"/pass",
+            path:"/pass",//手机密码登录
             component:Pass
         },
         {
             path:"/qdfxx",
             name:'qdfxx',
             component:Qdfxx
+        },
+        {
+            path:"/smspwd",
+            name:'smspwd',
+            component:Smspwd
         }
-
      ]
 })

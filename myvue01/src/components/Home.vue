@@ -49,6 +49,9 @@ export default {
   padding:0;
   
 }
+.wrapper{
+  height:100%;
+}
 
 
 </style>

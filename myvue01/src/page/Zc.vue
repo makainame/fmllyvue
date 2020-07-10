@@ -7,6 +7,7 @@
         alt
       />
     </div>
+<<<<<<< HEAD
     <br /><br />
     <van-field
       v-model="tel"
@@ -19,6 +20,13 @@
         <van-button size="small" type="primary" @click="but"
           >发送验证码</van-button
         >
+=======
+    <br />
+    <br />
+    <van-field v-model="tel" type="tel" label="手机号" placeholder="请输入手机号" show-error-message>
+      <template #button>
+        <van-button size="small" type="primary" @click="Sms">发送验证码</van-button>
+>>>>>>> 73042d8ae19aab9484e20d2214d80e00db88c591
       </template>
     </van-field>
     <br />
@@ -38,7 +46,11 @@
       </span>
     </div>
 
+<<<<<<< HEAD
     <button class="btn" @click="btn">登录</button>
+=======
+    <button class="btn" @click="Login">登录</button>
+>>>>>>> 73042d8ae19aab9484e20d2214d80e00db88c591
   </div>
 </template>
 
@@ -59,6 +71,7 @@ export default {
     onClickLeft() {
       this.$router.go(-1);
     },
+<<<<<<< HEAD
     // 发送验证码
     but() {
       
@@ -91,6 +104,35 @@ export default {
       } else {
         this.$toast.fail(res.msg)
       }
+=======
+    Sms() {
+      this.$http
+        .post("/api/app/smsCode", { mobile: this.tel, sms_type: "login" })
+        .then(res => {
+          console.log(res);
+        });
+    },
+    Login() {
+      this.$http
+        .post("/api/app/login", {
+          mobile: this.tel,
+          sms_code: this.sms,
+          type: 2,
+          client: 1
+        })
+        .then(res => {
+          console.log(res);
+          window.localStorage.setItem(
+            "adminToken",
+            res.data.data.remember_token
+          );
+          window.localStorage.setItem("userid", res.data.data.id);
+          //路由跳转
+          this.$router.push({
+            path: "/smspwd"
+          });
+        });
+>>>>>>> 73042d8ae19aab9484e20d2214d80e00db88c591
     }
   },
   created() {},
