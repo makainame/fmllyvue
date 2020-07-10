@@ -7,13 +7,14 @@
         alt
       />
     </div>
-    <br><br>
+    <br />
+    <br />
     <van-field v-model="tel" type="tel" label="手机号" placeholder="请输入手机号" show-error-message>
       <template #button>
-        <van-button size="small" type="primary">发送验证码</van-button>
+        <van-button size="small" type="primary" @click="Sms">发送验证码</van-button>
       </template>
     </van-field>
-    <br>
+    <br />
     <van-field
       v-model="sms"
       center
@@ -22,15 +23,15 @@
       label="短信验证码"
       placeholder="请输入短信验证码"
     ></van-field>
-    <br>
+    <br />
     <div class="bz">
       <span>未注册的手机号会被自动注册</span>
       <span>
         <router-link to="/pass">用密码登录</router-link>
       </span>
     </div>
-  
-    <button class='btn'>登录</button>
+
+    <button class="btn" @click="Login">登录</button>
   </div>
 </template>
 
@@ -50,6 +51,34 @@ export default {
   methods: {
     onClickLeft() {
       this.$router.go(-1);
+    },
+    Sms() {
+      this.$http
+        .post("/api/app/smsCode", { mobile: this.tel, sms_type: "login" })
+        .then(res => {
+          console.log(res);
+        });
+    },
+    Login() {
+      this.$http
+        .post("/api/app/login", {
+          mobile: this.tel,
+          sms_code: this.sms,
+          type: 2,
+          client: 1
+        })
+        .then(res => {
+          console.log(res);
+          window.localStorage.setItem(
+            "adminToken",
+            res.data.data.remember_token
+          );
+          window.localStorage.setItem("userid", res.data.data.id);
+          //路由跳转
+          this.$router.push({
+            path: "/smspwd"
+          });
+        });
     }
   },
   created() {},
@@ -76,17 +105,17 @@ export default {
   align-items: center;
   color: #cccc;
 }
-.btn{
-    width:350px;
-    height:40px;
-    color:#ffffff;
-    background:orange;
-    border:none;
-    border-radius:20px;
-    line-height:40px;
-    text-align: center;
-    font-size:16px;
-    font-weight:normal;
-    margin-left:10px;
+.btn {
+  width: 350px;
+  height: 40px;
+  color: #ffffff;
+  background: orange;
+  border: none;
+  border-radius: 20px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: normal;
+  margin-left: 10px;
 }
 </style>

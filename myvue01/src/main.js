@@ -3,10 +3,12 @@ import App from './App.vue'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import router from '@/router'
-import axios from'axios'
+// import axios from'axios'
 import store from'./store/index'
+import axios from './util/Http'
 Vue.config.productionTip = false
 Vue.prototype.$axios=axios
+Vue.prototype.$http = axios
 import 'amfe-flexible'
 Vue.use(Vant)
 

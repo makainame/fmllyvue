@@ -17,6 +17,7 @@ import Pwd from'@/page/Pwd'
 import Zc from'@/page/Zc'
 import Pass from'@/page/Pass'
 import Detail from '@/page/Detail'
+import Smspwd from '@/page/Sms-pwd'
 
 import lxyFz from'@/page/lxy/lxyFz'
 import lxyCp from'@/page/lxy/lxyCp'
@@ -135,21 +136,26 @@ export default new Router({
             component:lxyXt
         },
         {
-            path:"/pwd",
+            path:"/pwd",//找回密码
             component:Pwd
         },
         {
-            path:"/zc",
+            path:"/zc",//注册页面
             component:Zc
         },
         {
-            path:"/pass",
+            path:"/pass",//手机密码登录
             component:Pass
         },
         {
             path:"/qdfxx",
             name:'qdfxx',
             component:Qdfxx
+        },
+        {
+            path:"/smspwd",
+            name:'smspwd',
+            component:Smspwd
         }
      ]
 })
