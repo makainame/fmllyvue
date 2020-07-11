@@ -7,9 +7,9 @@
   left-arrow
   @click-left='goLogin'
 />
-<van-field v-model="password" type="password" placeholder="请设置登录密码" error-message />
-<van-field  type="password" placeholder="请再次输入密码" error-message />
-<button class='btn'>提交</button>
+<van-field v-model="password"  type="password" placeholder="请设置登录密码" error-message />
+<van-field v-model="passwordnew" type="password" placeholder="请再次输入密码" error-message />
+<button class='btn' @click="btn">提交</button>
   </div>
 </template>
 
@@ -19,7 +19,10 @@ export default {
   props: {},
   data() {
     return {
-        password:''
+        password:'',
+        passwordnew:'',
+        phone:'',
+        yzm:''
     };
   },
   watch: {},
@@ -27,6 +30,24 @@ export default {
   methods: {
       goLogin(){
           this.$router.go(-1)
+      },
+     btn()  {
+         let phone=JSON.parse(localStorage.getItem("shouji"))
+               this.phone=phone
+         let yz =JSON.parse(localStorage.getItem("yzm"))
+               this.yzm=yz
+         if(this.password==this.passwordnew){
+               this.$http.post("/api/app/password",{password:this.password,type:1,mobile:this.phone,sms_type:"login",sms_code:this.yzm,type:2,client:1}).then((res)=>{
+                 if(res.data.code==200){
+                         this.$toast.success(res.data.msg)
+                         this.$router.push("/xf")
+                 }else{
+                      this.$toast.fail(res.data.msg)
+                 }
+         
+        })
+         }
+      
       }
   },
   created() {},

@@ -7,7 +7,6 @@
         alt
       />
     </div>
-<<<<<<< HEAD
     <br /><br />
     <van-field
       v-model="tel"
@@ -18,15 +17,8 @@
     >
       <template #button>
         <van-button size="small" type="primary" @click="but"
-          >发送验证码</van-button
+          >发送验证码{{count}}</van-button
         >
-=======
-    <br />
-    <br />
-    <van-field v-model="tel" type="tel" label="手机号" placeholder="请输入手机号" show-error-message>
-      <template #button>
-        <van-button size="small" type="primary" @click="Sms">发送验证码</van-button>
->>>>>>> 73042d8ae19aab9484e20d2214d80e00db88c591
       </template>
     </van-field>
     <br />
@@ -46,11 +38,7 @@
       </span>
     </div>
 
-<<<<<<< HEAD
     <button class="btn" @click="btn">登录</button>
-=======
-    <button class="btn" @click="Login">登录</button>
->>>>>>> 73042d8ae19aab9484e20d2214d80e00db88c591
   </div>
 </template>
 
@@ -63,6 +51,9 @@ export default {
       tel: "",
       phone: "",
       sms: "",
+      show: true,
+      count: '',
+      timer: null,
     };
   },
   watch: {},
@@ -71,69 +62,80 @@ export default {
     onClickLeft() {
       this.$router.go(-1);
     },
-<<<<<<< HEAD
     // 发送验证码
     but() {
-      
-      this.$http.post("/api/app/smsCode",{mobile:this.tel,sms_type:"login"}).then((res)=>{
-        console.log(res)
-        if(res.data.code == 200){
-          this.$toast.success(res.data.msg)
-        } else {
-          this.$toast.fail(res.data.msg)
-        }
-      })
-    },
-    async btn (){
-      let { data:res } = await this.$http.post("/api/app/login",{mobile:this.tel,sms_type:"login",sms_code:this.sms,type:2,client:1})
-      console.log(res)
-      if(res.code == 200) {
-        this.$toast.success(res.msg)
-         window.localStorage.setItem("adminToken",res.data.remember_token)
-         window.localStorage.setItem("userid",res.data.id)
-             if(res.is_new==1){
-                  this.$router.push({
-                    path:"/zc"
-                 })
-            }else if(res.is_new==2){
-                 this.$router.push({
-                    path:"/dl"
-                 })
-             }
-  
-      } else {
-        this.$toast.fail(res.msg)
-      }
-=======
-    Sms() {
       this.$http
         .post("/api/app/smsCode", { mobile: this.tel, sms_type: "login" })
-        .then(res => {
+        .then((res) => {
           console.log(res);
+          if (res.data.code == 200) {
+            this.$toast.success(res.data.msg);
+          } else {
+            this.$toast.fail(res.data.msg);
+          }
         });
     },
-    Login() {
-      this.$http
-        .post("/api/app/login", {
-          mobile: this.tel,
-          sms_code: this.sms,
-          type: 2,
-          client: 1
-        })
-        .then(res => {
-          console.log(res);
-          window.localStorage.setItem(
-            "adminToken",
-            res.data.data.remember_token
-          );
-          window.localStorage.setItem("userid", res.data.data.id);
-          //路由跳转
+    async btn() {
+      let { data: res } = await this.$http.post("/api/app/login", {
+        mobile: this.tel,
+        sms_type: "login",
+        sms_code: this.sms,
+        type: 2,
+        client: 1,
+      });
+      console.log(res);
+      if (res.code == 200) {
+        this.$toast.success(res.msg);
+        window.localStorage.setItem("adminToken", res.data.remember_token);
+        window.localStorage.setItem("userid", res.data.id);
+        window.localStorage.setItem("shouji", this.tel);
+        
+        window.localStorage.setItem("yzm", this.sms);
+        if (res.data.is_new == 1) {
           this.$router.push({
-            path: "/smspwd"
+            path: "/smspwd",
           });
-        });
->>>>>>> 73042d8ae19aab9484e20d2214d80e00db88c591
-    }
+        } else if (res.data.is_new == 2) {
+          this.$router.push({
+            path: "/xf",
+          });
+        }
+      } else {
+        this.$toast.fail(res.msg);
+      }
+    },
+    getCode(){
+
+     const TIME_COUNT = 60;
+
+     if (!this.timer) {
+
+       this.count = TIME_COUNT;
+
+       this.show = false;
+
+       this.timer = setInterval(() => {
+
+       if (this.count > 0 && this.count <= TIME_COUNT) {
+
+         this.count--;
+
+        } else {
+
+         this.show = true;
+
+         clearInterval(this.timer);
+
+         this.timer = null;
+
+        }
+
+       }, 1000)
+
+      }
+
+   } 
+
   },
   created() {},
   mounted() {},
