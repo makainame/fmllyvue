@@ -30,7 +30,7 @@ import lxyTj from'@/page/lxy/lxyTj'
 
 // import { component } from 'vue/types/umd'
 
-// import Mkrouter from'@/page/Mkrouter'
+import Mkrouter from'@/page/Mkrouter'
 
 import Qdfss from'@/page/qdf/Qdfss'
 import Qdfxqy from'@/page/qdf/Qdfxqy'
@@ -55,103 +55,103 @@ export default new Router({
                children:[
                 {
                     path:"sy",
-                    component:Sy
+                    component:()=> import ("../components/Sy.vue")
                 },
                 {
                    path:"kc",
-                   component:Kc
+                   component:()=> import ("../components/Kc.vue")
                },
                {
                    path:"wd",
-                   component:Wd
+                   component:()=> import ("../components/Wd.vue")
                },
                {
                    path:"yk",
-                   component:Yk
+                   component:()=> import ("../components/Yk.vue")
                },
                {
                    path:"lx",
-                   component:Lx
+                   component:()=> import ("../components/Lx.vue")
                },
                ] 
         },
 
          
         {
-             path:"/deles",
-            component:Deles
+            path:"/deles",
+            component:()=> import ("../page/Deles.vue")
         },
         {
             path:"/qdfss",
             name:'qdfss',
-            component:Qdfss
+            component:()=> import ("../page/qdf/Qdfss.vue")
         },
         {
             path:"/qdfxqy",
             name:'qdfxqy',
-            component:Qdfxqy
+            component:()=> import ("../page/qdf/Qdfxqy.vue")
         },
         {
             path:"/qdfjsxq",
             name:'qdfjsxq',
-            component:Qdfjsxq
+            component:()=> import ("../page/qdf/Qdfjsxq.vue")
         },
         {
-             path:"/deles",
-            component:Deles
+            path:"/mkroute",
+            component:()=> import ("../page/Mkrouter.vue")
         },
         {
             path:"/oto",
-           component:Oto
+           component:()=>  import("../page/Oto.vue")
         },
         {
             path:"/Otoplan",
-           component:Otoplan
+           component:()=> import("../page/Otoplan.vue")
         },
         {
             path:'/detail',
-            component:Detail
+            component:()=> import ("../page/Detail.vue")
         },
         {
             path:"/lxykd",//考点专练
-            component:lxyKd
+            component:()=> import ("../page/lxy/lxyKd.vue")
         },
         {
             path:"/lxytj",//套卷练习
-            component:lxyTj
+            component:()=> import ("../page/lxy/lxyTj.vue")
         },
         {
             path:"/lxyfz",//仿真模考
-            component:lxyFz
+            component:()=> import ("../page/lxy/lxyFz.vue")
         },
         {
             path:"/lxyct",//错题练习
-            component:lxyCt
+            component:()=> import ("../page/lxy/lxyCt.vue")
         },
         {
             path:"/lxycp",//测评记录
-            component:lxyCp
+            component:()=> import ("../page/lxy/lxyCp.vue")
         },
         {
             path:"/lxyxt",//习题收藏
-            component:lxyXt
+            component:()=> import("../page/lxy/lxyXt.vue")
         },
         {
             path:"/pwd",//找回密码
-            component:Pwd
+            component:()=> import("../page/Pwd.vue")
         },
         {
             path:"/zc",//注册页面
-            component:Zc
+            component:()=> import("../page/Zc.vue")
         },
         {
             path:"/pass",//手机密码登录
-            component:Pass
+            component:()=> import("../page/Pass.vue")
         },
         {
             path:"/qdfxx",
             name:'qdfxx',
-            component:Qdfxx
+            component:()=> import ("../page/qdf/Qdfxx.vue")
         },
         {
             path:"/smspwd",

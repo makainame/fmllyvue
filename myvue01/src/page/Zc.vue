@@ -7,11 +7,17 @@
         alt
       />
     </div>
-    <br />
-    <br />
-    <van-field v-model="tel" type="tel" label="手机号" placeholder="请输入手机号" show-error-message>
+    <br /><br />
+    <van-field
+      v-model="tel"
+      type="tel"
+      label="手机号"
+      placeholder="请输入手机号"
+      show-error-message
+    >
       <template #button>
-        <van-button size="small" type="primary" @click="Sms">发送验证码</van-button>
+        <van-button  size="small" type="primary"   @click="but"  v-show="show"> 发送验证码 </van-button >
+         <van-button  size="small" type="primary"   v-show="!show"> {{count}} </van-button >
       </template>
     </van-field>
     <br />
@@ -31,7 +37,7 @@
       </span>
     </div>
 
-    <button class="btn" @click="Login">登录</button>
+    <button class="btn" @click="btn">登录</button>
   </div>
 </template>
 
@@ -43,7 +49,10 @@ export default {
     return {
       tel: "",
       phone: "",
-      sms: ""
+      sms: "",
+      show: true,
+      count: '',
+      timer: null,
     };
   },
   watch: {},
@@ -52,10 +61,11 @@ export default {
     onClickLeft() {
       this.$router.go(-1);
     },
-    Sms() {
+    // 发送验证码
+    but() {
       this.$http
         .post("/api/app/smsCode", { mobile: this.tel, sms_type: "login" })
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.$Toast(res.data.msg)
         });
@@ -95,7 +105,7 @@ export default {
     }
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

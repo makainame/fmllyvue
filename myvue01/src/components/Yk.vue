@@ -1,5 +1,5 @@
 <template>
-  <div id="great">
+  <div id="great" :style="{overflow:$store.state.index==1?'hidden':''}">
     <!-- 顶部 -->
     <div class="div_top">约课记录</div>
     <!-- 导航标题部分 -->

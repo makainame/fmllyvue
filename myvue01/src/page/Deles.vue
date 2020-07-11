@@ -9,14 +9,14 @@
     </div>
     <div class="action">
       <p>手机</p>
-      <input type="text" placeholder="请输入" />
+      <input type="text" v-model="phone" placeholder="请输入" />
     </div>
     <div class="active">
       <p>留言内容</p>
-      <input type="text" placeholder="请输入" />
+      <input type="text" v-model="Ly"  placeholder="请输入" />
     </div>
     <div class="bottom">
-      <button v-jump="path">提交</button>
+      <button v-jump="path" @click="but">提交</button>
     </div>
     
   </div>
@@ -28,12 +28,19 @@ export default {
   props: {},
   data() {
     return {
-      path:"/mkroute"
+      path:"/mkroute",
+      phone:"",
+      Ly:""
     };
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+   async but() {
+        let {data:res}= await this.$http.post("/api/app/person",{mobile:this.phone,})
+         
+   }
+  },
   created() {},
   mounted() {},
 };

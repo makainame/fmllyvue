@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="{overflow:$store.state.index==1?'hidden':''}">
       <div class="lxy_bt">
           练习
       </div>
