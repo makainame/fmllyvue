@@ -110,13 +110,6 @@ export default {
       });
       console.log(res);
       if (res.code == 200) {
-     
-
-
-
-
-
-
         this.$toast.success(res.msg);
         window.localStorage.setItem("adminToken", res.data.remember_token);
         window.localStorage.setItem("userid", res.data.id);

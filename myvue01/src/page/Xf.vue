@@ -1,9 +1,6 @@
 <template>
   <div class="wrapper">
-      
-       <!-- <div class="xf"   v-jump="path" >
-      <van-icon  name="envelop-o" color="#ffffff" class="xfs" size="30" />
-     </div> -->
+      <div class="absode">
      <div class="xf" id="moveDiv" v-jump="path"
 	      @mousedown.stop="down()" @touchstart.stop="down()"
 	      @mousemove.stop="move()" @touchmove.stop="move()"
@@ -11,7 +8,7 @@
 	    >
 	     <van-icon  name="envelop-o" color="#ffffff" class="xfs" size="30" />
 	    </div>
-
+</div>
   </div>
 </template>
 
@@ -95,6 +92,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+ .wrapper{
+     width: 100%;
+     height: 100%;
+
+ }
+ .absode{
+   width: 100%;
+   height: 200px;
+   background: chartreuse;
+   position: fixed;
 .xf{
   width:60px;
   height:60px;
@@ -109,6 +116,8 @@ export default {
    margin-left:15px;
  }
 }
+ }
+
 // #webId { position: relative; }
 //   .xuanfu {
 //     height: 54px; /* rem = 12px */
