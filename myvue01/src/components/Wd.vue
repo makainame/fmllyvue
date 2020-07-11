@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="user" :style="{overflow:$store.state.index==1?'hidden':''}">
     <div class="imgas">
       <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png" alt="">
     </div>

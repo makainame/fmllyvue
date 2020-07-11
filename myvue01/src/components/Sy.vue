@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="{overflow:$store.state.index==1?'hidden':''}">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
         <van-swipe-item>
         <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019MGNW3BtiS91569839576.jpg" alt="">
@@ -325,6 +325,7 @@ export default {
   height:100%;
   background:#fafafa;
   font-size:14px;
+  
 }
  .my-swipe .van-swipe-item {
     color: #fff;
@@ -333,6 +334,7 @@ export default {
     img{
       width:100%;
       height:200px;
+    
     }
   }
 .menu{
