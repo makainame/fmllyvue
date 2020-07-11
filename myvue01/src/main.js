@@ -3,8 +3,16 @@ import App from './App.vue'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import router from '@/router'
-import axios from'./utils/http'
+
 import store from'./store/index'
+
+import vant from './util/vant'
+import rem from './index'
+Vue.config.productionTip = false
+import axios from'axios'
+Vue.prototype.$axios=axios
+import http from './util/Http'
+Vue.prototype.$http = http
 import 'amfe-flexible'
 import { Toast } from 'vant';
 Vue.use(Toast);
@@ -13,6 +21,23 @@ Vue.prototype.$http=axios
 Vue.prototype.$toast = Toast
 Vue.use(Vant)
 
+// / 编程导航 自定义指令
+Vue.directive("jump",(el,{value},vnode)=>{
+  el.onclick=(()=>{
+      vnode.context.$router.push({
+          path:value
+      })
+  })
+})
+
+Vue.directive("detail",(el,{value},vnode)=>{
+  el.onclick=(()=>{
+      vnode.context.$router.push({
+          path:value
+      })
+  })
+})
+// 拖拽
 
      
 // / 编程导航 自定义指令

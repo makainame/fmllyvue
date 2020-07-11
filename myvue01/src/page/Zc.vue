@@ -67,38 +67,42 @@ export default {
         .post("/api/app/smsCode", { mobile: this.tel, sms_type: "login" })
         .then((res) => {
           console.log(res);
-          if (res.data.code == 200) {
-            const TIME_COUNT = 60;
-     if (!this.timer) {
-
-       this.count = TIME_COUNT;
-
-       this.show = false;
-
-       this.timer = setInterval(() => {
-
-       if (this.count > 0 && this.count <= TIME_COUNT) {
-
-         this.count--;
-
-        } else {
-
-         this.show = true;
-
-         clearInterval(this.timer);
-
-         this.timer = null;
-
-        }
-
-       }, 1000)
-
-      }
-            this.$toast.success(res.data.msg);
-          } else {
-            this.$toast.fail(res.data.msg);
-          }
+          this.$Toast(res.data.msg)
         });
+    },
+    Login() {
+      this.$http
+        .post("/api/app/login", {
+          mobile: this.tel,
+          sms_code: this.sms,
+          type: 2,
+          client: 1
+        })
+        .then(res => {
+          console.log(res.data)
+          if (res.data.code == 200) {
+            window.localStorage.setItem(
+              "adminToken",
+              res.data.data.remember_token
+            );
+            window.localStorage.setItem("userid", res.data.data.id);
+
+            if (res.data.data.is_new == 1) {
+              //路由跳转设置密码
+              console.log("首次登陆");
+              this.$router.push({
+                path: "/smspwd"
+              });
+            } else if (res.data.data.is_new == 2) {
+              console.log("第二次登陆");
+              this.$router.push({
+                path: "/smsmain"
+              });
+            }
+          }
+          console.log(res);
+        });
+<<<<<<< HEAD
     },
     async btn() {
       let { data: res } = await this.$http.post("/api/app/login", {
@@ -131,6 +135,9 @@ export default {
     },
     
 
+=======
+    }
+>>>>>>> 28cfb97c97fb058dd2743b746e0e38b5055cc445
   },
   created() {},
   mounted() {},

@@ -18,6 +18,7 @@ import Zc from'@/page/Zc'
 import Pass from'@/page/Pass'
 import Detail from '@/page/Detail'
 import Smspwd from '@/page/Sms-pwd'
+import SmsMain from '@/page/Sms-main'
 
 import lxyFz from'@/page/lxy/lxyFz'
 import lxyCp from'@/page/lxy/lxyCp'
@@ -155,12 +156,12 @@ export default new Router({
         {
             path:"/smspwd",
             name:'smspwd',
-            component:()=> import("../page/Sms-pwd.vue")
+            component:Smspwd
         },
         {
-            path:"/sz",
-            name:'sz',
-            component:()=>import ("../page/Sz.vue")
-        },
+            path:"/smsmain",
+            name:'smsmain',
+            component:SmsMain
+        }
      ]
 })

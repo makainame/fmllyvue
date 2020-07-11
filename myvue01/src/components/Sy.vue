@@ -1,17 +1,8 @@
 <template>
   <div class="wrapper" :style="{overflow:$store.state.index==1?'hidden':''}">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item>
-        <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019MGNW3BtiS91569839576.jpg" alt="">
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20197Cxc53hktC1569839552.jpg" alt="">
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019LnKumseuhw1569839569.jpg" alt="">
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20193KAjU2cB6h1569839562.jpg" alt="">
+        <van-swipe-item v-for="(item,index) in banner" :key="index">
+        <img :src="item.banner_img" alt="">
         </van-swipe-item>
       </van-swipe>
      <div class="menu">
@@ -32,20 +23,19 @@
            </li>
        </ul>
      </div>
-    
-      <div class="nav">
+     <div v-for="(item,index) in List" :key="index">
+      <div class="nav" v-if="item.channel_info.type == 3">
        <ul>
-         <h3>名师阵容</h3>
+         <h3>{{ item.channel_info.name }}</h3>
          <br>
           <van-cell is-link @click="showPopup">
-         <li v-for="(item,index) of content" :key="index" >
-             
+         <li v-for="(v,i) in item.list" :key="i" >
                  <div class="left">
-                   <img :src="item.img" alt="">
+                   <img :src="v.teacher_avatar" alt="">
                  </div>
                 <div class="right">
-                  <p>{{ item.title }}</p>
-                  <p>{{ item.con }}</p>
+                  <p>{{ v.teacher_name }}</p>
+                  <p>{{ v.introduction }}</p>
                 </div>
          </li>
           </van-cell>
@@ -53,69 +43,51 @@
         
      </div>
     
-     <div class="cons">
+   
+     <div class="cons" v-if="item.channel_info.type == 1">
           <ul>
-          <h3>精品课程</h3>
+          <h3>{{ item.channel_info.name }}</h3>
           <br>
-          <li v-for="(item,index) of nav" :key="index" v-detail='path'>
-              <p>{{ item.news }}</p>
+          <li v-for="(j,k) in item.list" :key="k" v-detail='path'>
+              <p>{{ j.title }}</p>
               <br>
-              <span>共{{item.count }}课时</span>
+              <span>共{{j.total_periods }}课时</span>
               <br>
-              <p>
-                <router-link to='/detail'><img :src="item.img" alt=""></router-link>{{ item.tit }}</p>
+              <p v-for="(s,y) in j.teachers_list" :key="y">
+              <img :src="s.teacher_avatar" alt="">{{ s.teacher_name }}</p>
                <br>
               <hr>
               <br>
               <div class="bz">
-                <span>已有{{ item.spa }}报名</span>
-                <span class="mat">{{ item.con }}</span>
+                <span>已有{{ j.sales_num }}报名</span>
+                <span class="mat">{{ j.price | priceShow }}</span>
               </div>
           </li>
         
         </ul>
      </div>
-      <div class="cont">
-          <ul>
-          <h3>推荐课程</h3>
-          <br>
-          <li v-for="(item,index) of navs" :key="index" v-detail='path'>
-              <p>{{ item.news }}</p>
-              <br>
-              <span>共{{item.count }}课时</span>
-              <br>
-              <p><img :src="item.img" alt="">{{ item.tit }}</p>
-              <br>
-              <hr>
-              <br>
-              <div class="bz">
-                <span>已有{{ item.spa }}报名</span>
-                <span class="mat">{{ item.con }}</span>
-              </div>
-          </li>
-        </ul>
-     </div>
-      <div class="nav">
+      <div class="nav" v-if="item.channel_info.type == 4">
        <ul>
-         <h3>明星讲师</h3> 
+         <h3>{{ item.channel_info.name }}</h3> 
          
          <br>
           <van-cell is-link @click="showPopup">
-         <li v-for="(item,index) of stars" :key="index">
+         <li v-for="(a,b) in item.list" :key="b">
              
                  <div class="left">
-                   <img :src="item.img" alt="">
+                   <img :src="a.teacher_avatar" alt="">
                  </div>
                 <div class="right">
-                  <p>{{ item.title }}
-                    <span style='color:red;font-size:16px;font-weight:bold;'>{{ item.tops }}</span>
+                  <p>{{ a.teacher_name }}
+                    <span style='color:red;font-size:16px;font-weight:bold;'>{{ a.level_name }}</span>
                   </p>
-                  <p>{{ item.con }}</p>
+                  <p>{{ a.introduction }}</p>
                 </div>
          </li>
          </van-cell>
        </ul>
          <xf></xf>
+     </div>
      </div>
    <van-popup v-model="show">
      <div class="tan">
@@ -123,8 +95,7 @@
         <h4>赶紧登陆一下吧</h4>
      <p>预约一对一辅导，浏览更多视频课程~~</p>
         <button class='btn'>
-          <router-link to='/wd'>立即登录
-            </router-link>
+          <router-link to='/wd'>立即登录</router-link>
           </button>
      </div>
     
@@ -144,179 +115,48 @@ export default {
   data() {
     return {
       path:'/detail',
-      content:[
-        {
-           img:'https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png',
-           con:'杨老师,特级教师.多次被中国数学会评为全国高中数学竞联赛优秀教练员。长期从事名校理科班的数学教学和数学竞赛辅导工作。',
-           title:'杨德胜'
-        },
-        {
-           img:'https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019wX5ZNRNxBT1577773182.jpg',
-           con:'文卫星，江苏沭阳县人，上海市特级教师。上海市首批名教师培养对象，上海市首批理科德育基地优秀学员。',
-           title:'文卫星'
-        },
-        {
-            img:'https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20192TSKKmyNso1572684453.png',
-           con:'马学斌老师，从2004年起，专注中考数学压轴题15年，专著《挑战中考数学压轴题》近几年每年服务读者30万。',
-           title:'马学斌'
-        }
-       
-       
-
-      ],
-      nav:[
-        {
-          news:"每时每课特级教师-自主招生冲刺讲座6-多元方程组与可转化为多元方程组问题",
-          count:2,
-          img:"https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png",
-          tit:"杨德胜",
-          spa:"57",
-          con:"免费"
-        },
-         {
-          news:"每时每课特级教师-自主招生冲刺讲座8-二次函数2--根的分布",
-          count:2,
-          img:"https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png",
-          tit:"杨德胜",
-          spa:"46",
-          con:"免费"
-        },
-         {
-          news:"初中重点几何知识点——第三讲：平行四边形与矩形、菱形、正方形的关系",
-          count:1,
-          img:"https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png",
-          tit:"马学斌",
-          spa:"123",
-          con:"免费"
-        },
-         {
-          news:"初中重点几何知识点——第九讲： 用描点法画出二次函数y＝－x^2的图象",
-          count:1,
-          img:"https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20192TSKKmyNso1572684453.png",
-          tit:"马学斌",
-          spa:"40",
-          con:"免费"
-        },
-         {
-          news:"初中重点几何知识点——第二讲：三角形对平行四边形的影响",
-          count:1,
-          img:"https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20192TSKKmyNso1572684453.png",
-          tit:"马学斌",
-          spa:"65",
-          con:"免费"
-        }
-      ],
-       navs:[
-        {
-          id:1,
-          news:"每时每课初中数学—初一拓展-分式（一）",
-          count:2,
-          img:"https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019lp2BTH501V1571360737.jpeg",
-          tit:"廖天星",
-          spa:"57",
-          con:"免费"
-        },
-         {
-           id:2,
-          news:"每时每课-初二物理-摩擦力",
-          count:2,
-          img:"https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
-          tit:"白静",
-          spa:"46",
-          con:"免费"
-        },
-         {
-           id:3,
-          news:"每时每课-初二物理-牛顿第一定律＆二力平衡知识点",
-          count:1,
-          img:"https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
-          tit:"白静",
-          spa:"123",
-          con:"免费"
-        },
-         {
-           id:4,
-          news:"每时每课-初一英语-where引导的特殊疑问句和on，in， under介词用法知识点",
-          count:1,
-          img:"https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
-          tit:"璐璐",
-          spa:"40",
-          con:"免费"
-        },
-         {
-           id:5,
-          news:"每时每课-初二英语-频率副词知识点",
-          count:1,
-          img:"https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
-          tit:"Willa",
-          spa:"65",
-          con:"免费"
-        }
-      ],
-       stars:[
-        {
-           img:'https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg',
-           con:'中学一级教师，16年教学经验。学校骨干教师，有丰富的教学经验及毕业班经验',
-           title:'杨老师',
-           tops:'M10'
-        },
-        {
-           img:'https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg',
-           con:'教学风格幽默风趣的同时也很严谨，对学生有耐心。',
-           title:'白静老师',
-           tops:'M8'
-        },
-        {
-            img:'https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg',
-           con:'教学风格讲课生动形象，机智诙谐，妙语连珠，动人心弦',
-           title:'盛老师',
-           tops:'M11'
-        },
-         {
-            img:'https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg',
-           con:'教学风格严谨、思路清晰、重在方法跟技巧。高中英语高级教师，区学科带头人，',
-           title:'Garce',
-           tops:'M20'
-
-        },
-         {
-            img:'https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg',
-           con:'国内知名师范院校英语专业毕业，授课方式清晰简洁。在校期间，曾连续三年 获得 “校三好学生”称号 ',
-           title:'Willa',
-           tops:'M11'
-
-        },
-         {
-            img:'https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg',
-           con:'具有较强的英语专业素养和较高的英语师范生技能；讲解细致，清晰，英语功底强。',
-           title:'璐璐',
-           tops:'M1'
-
-        },
-         {
-            img:'https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg',
-           con:'教学风格擅长寓教于乐的教学方式，条理清晰，细心认真。本人从事教育行业八年，一直担任高中数学老师',
-           title:'杨花花',
-           tops:'M11'
-
-        }
-       
-       
-
-      ],
        show: false,
-       id:''
+       id:'',
+       banner:[],
+       List:[]
     };
+  },
+  filters:{
+    priceShow(val){
+    
+        if(val == 0){
+          return "免费"
+        }else{
+           return `￥${(val/100).toFixed(2)}`
+        }
+      
+  }
   },
   watch: {},
   computed: {},
   methods: {
     showPopup() {
       this.show = true;
+    },
+    async AjaxSwiper(){
+      let { data:res } = await this.$axios.get("https://www.365msmk.com/api/app/banner")
+      console.log(res,123)
+      this.banner = res.data
+    },
+      async AjaxList(){
+      let { data:res } = await this.$axios.get("https://www.365msmk.com/api/app/recommend/appIndex")
+      console.log(res,123)
+      this.List = res.data
     }
   },
-  created() {},
-  mounted() {}
+  created() {
+  
+      console.log(1)
+  },
+  mounted() {
+   this.AjaxSwiper()
+   this.AjaxList()
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -385,7 +225,7 @@ export default {
       width:100%;
       height:20px;
       border-left:5px solid orange;
-      padding-left:10px;
+      padding-left:20px;
     }
     li{
       width:80%;
@@ -407,9 +247,9 @@ export default {
        
       }
       .right{
-        width:250px;
+        width:100%;
         height:100%;
-   overflow:hidden;
+        overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
       }
