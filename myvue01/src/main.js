@@ -3,15 +3,35 @@ import App from './App.vue'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import router from '@/router'
-// import axios from'axios'
+
 import store from'./store/index'
-import axios from './util/Http'
+
+import vant from './util/vant'
+import rem from './index'
 Vue.config.productionTip = false
+import axios from'axios'
 Vue.prototype.$axios=axios
-Vue.prototype.$http = axios
+import http from './util/Http'
+Vue.prototype.$http = http
 import 'amfe-flexible'
 Vue.use(Vant)
 
+// / 编程导航 自定义指令
+Vue.directive("jump",(el,{value},vnode)=>{
+  el.onclick=(()=>{
+      vnode.context.$router.push({
+          path:value
+      })
+  })
+})
+
+Vue.directive("detail",(el,{value},vnode)=>{
+  el.onclick=(()=>{
+      vnode.context.$router.push({
+          path:value
+      })
+  })
+})
 // 拖拽
 
 // 请求拦截器

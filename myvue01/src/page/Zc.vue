@@ -57,6 +57,7 @@ export default {
         .post("/api/app/smsCode", { mobile: this.tel, sms_type: "login" })
         .then(res => {
           console.log(res);
+          this.$Toast(res.data.msg)
         });
     },
     Login() {
@@ -68,16 +69,28 @@ export default {
           client: 1
         })
         .then(res => {
+          console.log(res.data)
+          if (res.data.code == 200) {
+            window.localStorage.setItem(
+              "adminToken",
+              res.data.data.remember_token
+            );
+            window.localStorage.setItem("userid", res.data.data.id);
+
+            if (res.data.data.is_new == 1) {
+              //路由跳转设置密码
+              console.log("首次登陆");
+              this.$router.push({
+                path: "/smspwd"
+              });
+            } else if (res.data.data.is_new == 2) {
+              console.log("第二次登陆");
+              this.$router.push({
+                path: "/smsmain"
+              });
+            }
+          }
           console.log(res);
-          window.localStorage.setItem(
-            "adminToken",
-            res.data.data.remember_token
-          );
-          window.localStorage.setItem("userid", res.data.data.id);
-          //路由跳转
-          this.$router.push({
-            path: "/smspwd"
-          });
         });
     }
   },
