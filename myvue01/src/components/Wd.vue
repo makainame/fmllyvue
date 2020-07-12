@@ -54,6 +54,7 @@ export default {
   methods: {
     onSubmit(values) {
       console.log("submit", values);
+      this.$router.push({path:'/smsmain'})
     },
     async but() {
       let { data: res } = await this.$http.post("/api/app/login", {
@@ -65,7 +66,7 @@ export default {
       if (res.code == 200) {
         this.$toast.success(res.msg);
         this.$router.push({
-          path: "/xf",
+          path: "/smsmain",
         });
       } else {
         this.$toast.fail(res.msg);

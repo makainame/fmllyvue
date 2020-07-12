@@ -1,10 +1,13 @@
 <template>
   <div class="wrapper" :style="{overflow:$store.state.index==1?'hidden':''}">
+    <!-- 轮播图开始 -->
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item,index) in banner" :key="index">
         <img :src="item.banner_img" alt />
       </van-swipe-item>
     </van-swipe>
+    <!-- 轮播图结束 -->
+    <!-- 导航开始 -->
     <div class="menu">
       <ul>
         <li>
@@ -32,13 +35,15 @@
         </li>
       </ul>
     </div>
+    <!-- 导航结束 -->
+    <!-- 首页列表开始 -->
     <div v-for="(item,index) in List" :key="index">
       <div class="nav" v-if="item.channel_info.type == 3">
         <ul>
           <h3>{{ item.channel_info.name }}</h3>
           <br />
           <!-- <van-cell> -->
-          <li v-for="(v,i) in item.list" :key="i" @click="showPopup">
+          <li v-for="(v,i) in item.list" :key="i"   @click="showPopup">
             <div class="left">
               <img :src="v.teacher_avatar" alt />
             </div>
@@ -55,7 +60,7 @@
         <ul>
           <h3>{{ item.channel_info.name }}</h3>
           <br />
-          <li v-for="(j,k) in item.list" :key="k" v-detail="path">
+          <li v-for="(j,k) in item.list" :key="k" v-detail="path" @click='statDetail(j.id)'>
             <p>{{ j.title }}</p>
             <br />
             <span>共{{j.total_periods }}课时</span>
@@ -99,6 +104,8 @@
         <xf></xf>
       </div>
     </div>
+    <!-- 首页列表结束 -->
+    <!-- //点击名师阵容出现的面板 -->
     <van-popup v-model="show">
       <div class="tan">
         <img src="../assets/1594515660(1).png" alt />
@@ -109,6 +116,7 @@
         </button>
       </div>
     </van-popup>
+    <!-- 悬浮面板结束 -->
   </div>
 </template>
 
@@ -143,6 +151,7 @@ export default {
     showPopup() {
       this.show = true;
     },
+    //轮播图接口获取
     async AjaxSwiper() {
       let { data: res } = await this.$axios.get(
         "https://www.365msmk.com/api/app/banner"
@@ -150,16 +159,31 @@ export default {
       console.log(res, 123);
       this.banner = res.data;
     },
+    //首页数据列表获取
     async AjaxList() {
       let { data: res } = await this.$axios.get(
         "https://www.365msmk.com/api/app/recommend/appIndex"
       );
       console.log(res, 123);
       this.List = res.data;
-    }
+    },
+    //课程详情页
+     statDetail(id){
+          this.$router.push({
+            path:'/detail',
+            query:{
+              id:id
+            }
+          })
+     }
+
+
+
+
+
+
   },
   created() {
-    console.log(1);
   },
   mounted() {
     this.AjaxSwiper();
@@ -168,12 +192,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+// 外层盒子
 .wrapper {
   width: 100%;
   height: 100%;
   background: #fafafa;
   font-size: 14px;
 }
+//轮播图
 .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 0.2rem;
@@ -183,6 +209,7 @@ export default {
     height: 200px;
   }
 }
+//导航悬浮
 .menu {
   width: 100%;
   height: 95px;
@@ -210,9 +237,13 @@ export default {
         line-height: 20px;
         text-align: center;
       }
+      p{
+        font-size:16px;
+      }
     }
   }
 }
+//首页列表
 .nav {
   width: 100%;
   padding-left: 10px;
@@ -232,11 +263,12 @@ export default {
     }
     li {
       width: 100%;
-      // height:81px;
+      height:81px;
       background: #ffffff;
+      // line-height:81px;
       display: flex;
       justify-content: space-around;
-      // align-items: center;
+      align-items:center;
       margin-top: 10px;
       // background:orange;
 
@@ -253,7 +285,7 @@ export default {
       }
       .right {
         width: 100%;
-        height: 100%;
+        // height: 100%;
         overflow: hidden;
 
         .content {
@@ -264,13 +296,14 @@ export default {
           white-space: nowrap;
         }
         .nav-con{
-          font-size:14px;
+          font-size:18px;
           margin-left:5px;
         }
       }
     }
   }
 }
+//推荐课程
 .cons {
   width: 100%;
   padding-left: 10px;
@@ -320,6 +353,7 @@ export default {
     }
   }
 }
+//明星讲师
 .cont {
   width: 100%;
   padding-left: 10px;
@@ -368,6 +402,7 @@ export default {
     }
   }
 }
+//悬浮面板立即登录
 .btn {
   width: 250px;
   height: 40px;
@@ -382,6 +417,7 @@ export default {
   margin-left: 10px;
   margin-bottom: 10px;
 }
+//点击面板
 .tan {
   width: 300px;
   text-align: center;

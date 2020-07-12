@@ -169,5 +169,6 @@ export default new Router({
             name:'smssend',
             component:()=> import ("../page/Smssend")
         }
+       
      ]
 })

@@ -5,9 +5,6 @@ import 'vant/lib/index.css'
 import router from '@/router'
 
 import store from'./store/index'
-
-import vant from './util/vant'
-import rem from './index'
 Vue.config.productionTip = false
 import axios from'axios'
 Vue.prototype.$axios=axios
@@ -15,6 +12,7 @@ import http from './util/Http'
 Vue.prototype.$http = http
 import 'amfe-flexible'
 import { Toast } from 'vant';
+
 Vue.use(Toast);
 Vue.config.productionTip = false
 Vue.prototype.$http=axios
