@@ -26,10 +26,9 @@ export default {
 .loading{
   width: 100%;
   height: 100%;
-  background-color: #00000020;
   position: fixed;
-  top: 0;
-  bottom: 0;
+  background:pink;
+  top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;

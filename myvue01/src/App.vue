@@ -2,9 +2,10 @@
 
   <div id="app">
     <!-- loading加载组件 -->
-     <lod v-if="isLoading"></lod>
+   <lod v-if="isLoading"></lod>
             <router-view ></router-view>
      <!-- 信封组件 -->
+       
     <xf v-show="!$route.meta.ollarr"></xf>
   </div>
   

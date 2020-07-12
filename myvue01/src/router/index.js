@@ -86,8 +86,7 @@ export default new Router({
                {
                 path:"smsmain",
                 name:'smsmain',
-                component:()=> import ("../page/Sms-main.vue"),
-                
+                component:()=> import ("../page/Smsmain.vue"),
                }
                ] 
         },
@@ -117,7 +116,10 @@ export default new Router({
         },
         {
             path:"/mkroute",
-            component:()=> import ("../page/Mkrouter.vue")
+            component:()=> import ("../page/Mkrouter.vue"),
+            meta:{
+                ollarr:true
+            }
         },
         {
             path:"/oto",
