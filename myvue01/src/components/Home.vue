@@ -1,24 +1,21 @@
 <template>
   <div class="wrapper">
     
-     <keep-alive>
-            <!-- <router-view v-if="$route.meta.allAlive" class="view"></router-view> -->
+   
             <router-view ></router-view>
-      </keep-alive>
-      <!-- <router-view v-if="!$route.meta.allAlive" class="view"></router-view> -->
-
+     
   <van-tabbar  route >
   <van-tabbar-item replace to="sy" icon="home-o">
     首页
   </van-tabbar-item>
-  <van-tabbar-item replace to="kc" icon="description
+  <van-tabbar-item replace to="kc" icon="column
 ">
     课程
   </van-tabbar-item>
-  <van-tabbar-item replace to="yk" icon="coupon-o">
+  <van-tabbar-item replace to="yk" icon="coupon">
     约课记录
   </van-tabbar-item>
-  <van-tabbar-item replace to="lx" icon="records">
+  <van-tabbar-item replace to="lx" icon="comment">
     练习
   </van-tabbar-item>
   <van-tabbar-item  @click="change" icon="user-circle-o
@@ -26,7 +23,7 @@
     我的
   </van-tabbar-item>
 </van-tabbar>
-   
+
   </div>
 </template>
 

@@ -17,8 +17,9 @@ import Pwd from'@/page/Pwd'
 import Zc from'@/page/Zc'
 import Pass from'@/page/Pass'
 import Detail from '@/page/Detail'
-import Smspwd from '@/page/Sms-pwd'
-import SmsMain from '@/page/Sms-main'
+import Smspwd from '@/page/Smspwd'
+import SmsMain from '@/page/Smsmain'
+import smsSend from '@/page/Smssend'
 
 import lxyFz from'@/page/lxy/lxyFz'
 import lxyCp from'@/page/lxy/lxyCp'
@@ -174,7 +175,7 @@ export default new Router({
         {
             path:"/smspwd",
             name:'smspwd',
-            component:Smspwd
+            component: ()=> import ("../page/Smspwd")
         },
         
      ]

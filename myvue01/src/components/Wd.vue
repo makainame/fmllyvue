@@ -18,6 +18,7 @@
         placeholder="手机号"
         :rules="[{ required: true, message: '请填写手机号' }]"
       />
+      <br>
       <van-field
         v-model="password"
         type="password"
@@ -29,10 +30,11 @@
       />
       <br />
       <div class="bz">
-        <span><router-link to="/pwd">找回密码</router-link></span>
-        <span> <router-link to="/zc">注册/验证码登录</router-link></span>
+        <span><router-link to='/pwd' style='color:#ccc'>找回密码</router-link></span>
+        <span> <router-link to='/zc' style='color:#ccc'>注册/验证码登录</router-link></span>
       </div>
-      <button class="btn" @click="but">登录</button>
+      <br>
+       <button class='btn'>登录</button>
     </van-form>
     
   </div>
