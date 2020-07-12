@@ -2,10 +2,10 @@
   <div class="sws-pwd">
       <van-nav-bar
   title="设置密码"
-  
   right-text="跳过"
   left-arrow
   @click-left='goLogin'
+  @click-right="path"
 />
 <van-field v-model="password"  type="password" placeholder="请设置登录密码" error-message />
 <van-field v-model="passwordnew" type="password" placeholder="请再次输入密码" error-message />
@@ -22,12 +22,17 @@ export default {
         password:'',
         passwordnew:'',
         phone:'',
-        yzm:''
+        yzm:'',
+      
+
     };
   },
   watch: {},
   computed: {},
   methods: {
+      path(){
+           this.$router.push("/sz")
+      },
       goLogin(){
           this.$router.go(-1)
       },

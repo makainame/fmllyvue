@@ -102,7 +102,38 @@ export default {
           }
           console.log(res);
         });
-    }
+    },
+    async btn() {
+      let { data: res } = await this.$http.post("/api/app/login", {
+        mobile: this.tel,
+        sms_type: "login",
+        sms_code: this.sms,
+        type: 2,
+        client: 1,
+      });
+      console.log(res);
+      if (res.code == 200) {
+        this.$toast.success(res.msg);
+        window.localStorage.setItem("adminToken", res.data.remember_token);
+        window.localStorage.setItem("userid", res.data.id);
+        window.localStorage.setItem("shouji", this.tel);
+        
+        window.localStorage.setItem("yzm", this.sms);
+        if (res.data.is_new == 1) {
+          this.$router.push({
+            path: "/smspwd",
+          });
+        } else if (res.data.is_new == 2) {
+          this.$router.push({
+            path: "/xf",
+          });
+        }
+      } else {
+        this.$toast.fail(res.msg);
+      }
+    },
+    
+
   },
   created() {},
   mounted() {},
