@@ -36,10 +36,10 @@ export default {
   watch: {},
   computed: {},
   methods: {
-   async but() {
-        let {data:res}= await this.$http.post("/api/app/person",{mobile:this.phone,})
+  //  async but() {
+  //       let {data:res}= await this.$http.post("/api/app/person",{mobile:this.phone,})
          
-   }
+  //  }
   },
   created() {},
   mounted() {},

@@ -46,41 +46,58 @@ export default new Router({
         {
             path:"/",
             name:"Home",
-            redirect:"/home"
+            redirect:"/home/sy"
         },
         {
                path:"/home",
                name:"Home",
                component:Home,
-               redirect:"/home/sy",
                children:[
                 {
                     path:"sy",
-                    component:()=> import ("../components/Sy.vue")
+                    name:"sy",
+                    component:()=> import ("../components/Sy.vue"),
+                   
                 },
                 {
                    path:"kc",
-                   component:()=> import ("../components/Kc.vue")
+                   name:"kc",
+                   component:()=> import ("../components/Kc.vue"),
+                  
                },
                {
                    path:"wd",
-                   component:()=> import ("../components/Wd.vue")
+                   name:"wd",
+                   component:()=> import ("../components/Wd.vue"),
+                  
                },
                {
                    path:"yk",
-                   component:()=> import ("../components/Yk.vue")
+                   name:"yk",
+                   component:()=> import ("../components/Yk.vue"),
+                   
                },
                {
                    path:"lx",
-                   component:()=> import ("../components/Lx.vue")
+                   name:"lx",
+                   component:()=> import ("../components/Lx.vue"),
+                  
                },
+               {
+                path:"smsmain",
+                name:'smsmain',
+                component:()=> import ("../page/Smsmain.vue"),
+               }
                ] 
         },
 
          
         {
             path:"/deles",
-            component:()=> import ("../page/Deles.vue")
+            component:()=> import ("../page/Deles.vue"),
+            meta:{
+                ollarr:true
+            }
         },
         {
             path:"/qdfss",
@@ -99,7 +116,10 @@ export default new Router({
         },
         {
             path:"/mkroute",
-            component:()=> import ("../page/Mkrouter.vue")
+            component:()=> import ("../page/Mkrouter.vue"),
+            meta:{
+                ollarr:true
+            }
         },
         {
             path:"/oto",
@@ -149,7 +169,7 @@ export default new Router({
             path:"/pass",//手机密码登录
             component:()=> import("../page/Pass.vue")
         },
-        {
+        {        
             path:"/qdfxx",
             name:'qdfxx',
             component:()=> import ("../page/qdf/Qdfxx.vue")

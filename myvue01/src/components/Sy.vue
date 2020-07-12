@@ -121,10 +121,11 @@
 </template>
 
 <script>
-import xf from "../page/Xf";
+import axios from'axios'
 export default {
+   name:"sy",
   components: {
-    xf
+    
   },
   props: {},
   data() {

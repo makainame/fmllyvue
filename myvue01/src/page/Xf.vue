@@ -97,16 +97,12 @@ export default {
      height: 100%;
 
  }
- .absode{
-   width: 100%;
-   height: 200px;
-   background: chartreuse;
-   position: fixed;
+ 
 .xf{
   width:60px;
   height:60px;
   border-radius:50%;
-  background:blue;
+  background:#3388ff;
   position: fixed;
   right: 30px;
   bottom: 100px;
@@ -115,7 +111,7 @@ export default {
    margin-top:15px;
    margin-left:15px;
  }
-}
+
  }
 
 // #webId { position: relative; }

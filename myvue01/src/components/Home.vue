@@ -1,9 +1,11 @@
 <template>
   <div class="wrapper">
-     <router-view />
+    
+   
+            <router-view ></router-view>
      
-  <van-tabbar route active-color="#FC5500" inactive-color="#000">
-  <van-tabbar-item replace to="sy" icon="wap-home">
+  <van-tabbar  route >
+  <van-tabbar-item replace to="sy" icon="home-o">
     首页
   </van-tabbar-item>
   <van-tabbar-item replace to="kc" icon="column
@@ -16,7 +18,7 @@
   <van-tabbar-item replace to="lx" icon="comment">
     练习
   </van-tabbar-item>
-  <van-tabbar-item replace to="wd" icon="manager
+  <van-tabbar-item  @click="change" icon="user-circle-o
 ">
     我的
   </van-tabbar-item>
@@ -38,7 +40,18 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    change(){
+        let toke= localStorage.getItem("adminToken")
+        if(toke){
+          this.$router.push("/home/smsmain")
+          
+        }else{
+           this.$router.push("/home/wd")
+        }
+        
+    }
+  },
   created() {},
   mounted() {}
 };

@@ -45,7 +45,7 @@ export default {
                this.$http.post("/api/app/password",{password:this.password,type:1,mobile:this.phone,sms_type:"login",sms_code:this.yzm,type:2,client:1}).then((res)=>{
                  if(res.data.code==200){
                          this.$toast.success(res.data.msg)
-                         this.$router.push("/xf")
+                         this.$router.push("/home/wd")
                  }else{
                       this.$toast.fail(res.data.msg)
                  }

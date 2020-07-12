@@ -17,7 +17,7 @@
     >
       <template #button>
         <van-button  size="small" type="primary"   @click="but"  v-show="show"> 发送验证码 </van-button >
-         <van-button  size="small" type="primary"   v-show="!show"> {{count}} </van-button >
+         <van-button  size="small" type="primary"   v-show="!show"> 倒计时 {{count}}  </van-button >
       </template>
     </van-field>
     <br />
@@ -67,6 +67,20 @@ export default {
         .post("/api/app/smsCode", { mobile: this.tel, sms_type: "login" })
         .then((res) => {
           console.log(res);
+          const TIME_COUNT = 60;
+     if (!this.timer) {
+       this.count = TIME_COUNT;
+       this.show = false;
+       this.timer = setInterval(() => {
+       if (this.count > 0 && this.count <= TIME_COUNT) {
+         this.count--;
+        } else {
+         this.show = true;
+         clearInterval(this.timer);
+         this.timer = null;
+        }
+       }, 1000)
+      }
           this.$Toast(res.data.msg)
         });
     },
@@ -113,6 +127,7 @@ export default {
       });
       console.log(res);
       if (res.code == 200) {
+        
         this.$toast.success(res.msg);
         window.localStorage.setItem("adminToken", res.data.remember_token);
         window.localStorage.setItem("userid", res.data.id);
@@ -125,7 +140,7 @@ export default {
           });
         } else if (res.data.is_new == 2) {
           this.$router.push({
-            path: "/xf",
+            path: "/home/smsmain",
           });
         }
       } else {

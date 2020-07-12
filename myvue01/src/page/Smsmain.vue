@@ -82,6 +82,7 @@
 
 <script>
 export default {
+  name:"smsmain",
   components: {},
   props: {},
   data() {
