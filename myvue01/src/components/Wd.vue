@@ -69,7 +69,7 @@ export default {
       if (res.code == 200) {
         this.$toast.success(res.msg);
         this.$router.push({
-          path: "/smsmain",
+          path: "/home/smsmain",
         });
       } else {
         this.$toast.fail(res.msg);

@@ -175,7 +175,7 @@ export default {
 
 .sms-menu{
   width:100%;
-  margin-bottom:50px;
+  // margin-bottom:50px;
   .inner-one{
     width:100%;
  

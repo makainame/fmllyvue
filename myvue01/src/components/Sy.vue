@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :style="{overflow:$store.state.index==1?'hidden':''}">
+  <div class="wrapper" >
     <!-- 轮播图开始 -->
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item,index) in banner" :key="index">
@@ -106,7 +106,7 @@
     </div>
     <!-- 首页列表结束 -->
     <!-- //点击名师阵容出现的面板 -->
-    <van-popup v-model="show">
+    <van-popup >
       <div class="tan">
         <img src="../assets/1594515660(1).png" alt />
         <h4>赶紧登陆一下吧</h4>
@@ -123,7 +123,6 @@
 <script>
 import axios from'axios'
 export default {
-   name:"sy",
   components: {
     
   },

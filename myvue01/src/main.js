@@ -10,7 +10,7 @@ import axios from'axios'
 Vue.prototype.$axios=axios
 import http from './util/Http'
 import 'amfe-flexible'
-
+import lod from'./util/Loading'
 import { Toast } from 'vant';
 
 Vue.use(Toast);

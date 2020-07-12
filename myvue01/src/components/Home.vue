@@ -1,10 +1,7 @@
 <template>
-  <div class="wrapper">
-    
-   
+  <div class="wrap">
             <router-view ></router-view>
-     
-  <van-tabbar  route >
+  <van-tabbar  route z-index="888">
   <van-tabbar-item replace to="sy" icon="home-o">
     首页
   </van-tabbar-item>
@@ -62,7 +59,7 @@ export default {
   padding:0;
   
 }
-.wrapper{
+.wrap{
   height:100%;
 }
 

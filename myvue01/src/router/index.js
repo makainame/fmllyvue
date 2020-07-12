@@ -192,11 +192,7 @@ export default new Router({
             name:'smspwd',
             component: ()=> import ("../page/Smspwd")
         },
-        {
-            path:"/smsmain",
-            name:'smsmain',
-            component:()=> import ("../page/Smsmain")
-        },
+       
         {
             path:"/smssend",
             name:'smssend',
