@@ -33,11 +33,11 @@
     <div class="bz">
       <span>未注册的手机号会被自动注册</span>
       <span>
-        <router-link to="/pass">用密码登录</router-link>
+        <router-link to="/pass" style='color:#ccc;'>用密码登录</router-link>
       </span>
     </div>
 
-    <button class="btn" @click="btn">登录</button>
+    <button class="btn" @click="Login">登录</button>
   </div>
 </template>
 
