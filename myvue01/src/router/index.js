@@ -182,7 +182,7 @@ export default new Router({
             path:"/pass",//手机密码登录
             component:()=> import("../page/Pass.vue")
         },
-        {
+        {        
             path:"/qdfxx",
             name:'qdfxx',
             component:()=> import ("../page/qdf/Qdfxx.vue")
@@ -192,6 +192,16 @@ export default new Router({
             name:'smspwd',
             component: ()=> import ("../page/Smspwd")
         },
-        
+        {
+            path:"/smsmain",
+            name:'smsmain',
+            component:()=> import ("../page/Smsmain")
+        },
+        {
+            path:"/smssend",
+            name:'smssend',
+            component:()=> import ("../page/Smssend")
+        }
+       
      ]
 })

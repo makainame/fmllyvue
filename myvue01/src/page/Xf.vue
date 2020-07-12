@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-      <div class="absode">
+     
      <div class="xf" id="moveDiv" v-jump="path"
 	      @mousedown.stop="down()" @touchstart.stop="down()"
 	      @mousemove.stop="move()" @touchmove.stop="move()"
@@ -8,7 +8,7 @@
 	    >
 	     <van-icon  name="envelop-o" color="#ffffff" class="xfs" size="30" />
 	    </div>
-</div>
+
   </div>
 </template>
 

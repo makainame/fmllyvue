@@ -55,6 +55,7 @@ export default {
   methods: {
     onSubmit(values) {
       console.log("submit", values);
+      this.$router.push({path:'/smsmain'})
     },
     async btn() {
       alert(1111)
@@ -68,7 +69,7 @@ export default {
       if (res.code == 200) {
         this.$toast.success(res.msg);
         this.$router.push({
-          path: "/home/smsmain",
+          path: "/smsmain",
         });
       } else {
         this.$toast.fail(res.msg);
