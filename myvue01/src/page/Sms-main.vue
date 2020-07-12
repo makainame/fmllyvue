@@ -82,6 +82,7 @@
 
 <script>
 export default {
+  name:"smsmain",
   components: {},
   props: {},
   data() {
@@ -170,6 +171,7 @@ export default {
 
 .sms-menu{
   width:100%;
+  margin-bottom:50px;
   .inner-one{
     width:100%;
  

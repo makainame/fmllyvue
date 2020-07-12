@@ -34,14 +34,15 @@
       </div>
       <button class="btn" @click="but">登录</button>
     </van-form>
-    <xf></xf>
+    
   </div>
 </template>
 <script>
-import xf from "../page/Xf";
+
 export default {
+   name:"wd",
   components: {
-    xf,
+  
   },
   data() {
     return {
@@ -59,11 +60,14 @@ export default {
         password: this.password,
         type: 1,
       });
-      console.log(res)
+ window.localStorage.setItem("adminToken", res.data.remember_token);
+
+
+      // console.log(res)
       if (res.code == 200) {
         this.$toast.success(res.msg);
         this.$router.push({
-          path: "/xf",
+          path: "/home/smsmain",
         });
       } else {
         this.$toast.fail(res.msg);

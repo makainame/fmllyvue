@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { Guid } from './guid'
+import store from '@/store'
+console.log(store)
 
 
 // 获取设备id
@@ -22,4 +24,6 @@ axios.interceptors.request.use(function(config) {
 },function(error){
     return Promise.reject(error)
 })
+
+
 export default axios

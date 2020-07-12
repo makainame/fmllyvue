@@ -33,15 +33,16 @@
           </p>
       </li>
     </ul>
-     <xf ></xf>
+  
   </div>
 </template>
 
 <script>
-import xf from'../page/Xf'
+
 export default {
+  name:"kc",
   components: {
-    xf,
+   
   },
   props: {},
   data() {

@@ -1,19 +1,24 @@
 <template>
 
   <div id="app">
-     <router-view />
-    
-  
-    
+    <!-- loading加载组件 -->
+     <lod v-if="isLoading"></lod>
+            <router-view ></router-view>
+     <!-- 信封组件 -->
+    <xf v-show="!$route.meta.ollarr"></xf>
   </div>
   
 </template>
 
 <script>
+import xf from'./page/Xf'
+import lod from './page/Loading'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
-   
+   xf,
+   lod
   },
   props: {},
   data() {
@@ -22,10 +27,16 @@ export default {
     };
   },
   watch: {},
-  computed: {},
+ computed: mapGetters({
+      isLoading: 'getLoading'
+  }),
   methods: {},
-  created() {},
-  mounted() {}
+  created() {
+     this.$store.dispatch("changeLoading")
+  },
+  mounted() {
+     
+  }
 };
 </script>
 <style>

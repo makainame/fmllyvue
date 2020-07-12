@@ -1,8 +1,13 @@
 <template>
   <div class="wrapper">
-     <router-view />
-     
-  <van-tabbar route >
+    
+     <keep-alive>
+            <!-- <router-view v-if="$route.meta.allAlive" class="view"></router-view> -->
+            <router-view ></router-view>
+      </keep-alive>
+      <!-- <router-view v-if="!$route.meta.allAlive" class="view"></router-view> -->
+
+  <van-tabbar  route >
   <van-tabbar-item replace to="sy" icon="home-o">
     首页
   </van-tabbar-item>
@@ -16,7 +21,7 @@
   <van-tabbar-item replace to="lx" icon="records">
     练习
   </van-tabbar-item>
-  <van-tabbar-item replace to="wd" icon="user-circle-o
+  <van-tabbar-item  @click="change" icon="user-circle-o
 ">
     我的
   </van-tabbar-item>
@@ -38,7 +43,18 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    change(){
+        let toke= localStorage.getItem("adminToken")
+        if(toke){
+          this.$router.push("/home/smsmain")
+          
+        }else{
+           this.$router.push("/home/wd")
+        }
+        
+    }
+  },
   created() {},
   mounted() {}
 };

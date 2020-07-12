@@ -8,7 +8,7 @@ const vuexLocal = new VuexPersist({
 });
 const store = new Vuex.Store({
   state:{
-      isLoading:true,
+      isLoading:false,
       overflow:false,
       index:null,
      
@@ -24,14 +24,21 @@ const store = new Vuex.Store({
     end(state){
         state.index=2
         console.log(state.index)
+    },
+    changeLoading(state, boolean){
+      state.isLoading = boolean
     }
        
   },
   actions:{
-      
+    changeLoading(state, boolean){
+      state.commit('changeLoading', boolean)
+    }
   },
   getters:{
-     
+    getLoading(state){
+      return state.isLoading
+    }
   },
   
   plugins: [vuexLocal.plugin]

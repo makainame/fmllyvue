@@ -86,7 +86,7 @@
          </li>
          </van-cell>
        </ul>
-         <xf></xf>
+       
      </div>
      </div>
    <van-popup v-model="show">
@@ -106,10 +106,11 @@
 </template>
 
 <script>
-import xf from'../page/Xf'
+import axios from'axios'
 export default {
+   name:"sy",
   components: {
-     xf,
+    
   },
   props: {},
   data() {
@@ -139,12 +140,12 @@ export default {
       this.show = true;
     },
     async AjaxSwiper(){
-      let { data:res } = await this.$axios.get("https://www.365msmk.com/api/app/banner")
+      let { data:res } = await axios.get("https://www.365msmk.com/api/app/banner")
       console.log(res,123)
       this.banner = res.data
     },
       async AjaxList(){
-      let { data:res } = await this.$axios.get("https://www.365msmk.com/api/app/recommend/appIndex")
+      let { data:res } = await axios.get("https://www.365msmk.com/api/app/recommend/appIndex")
       console.log(res,123)
       this.List = res.data
     }
