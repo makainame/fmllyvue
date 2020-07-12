@@ -9,22 +9,11 @@ const vuexLocal = new VuexPersist({
 const store = new Vuex.Store({
   state:{
       isLoading:false,
-      overflow:false,
       index:null,
      
   },
   mutations:{
-      down(state){
-          state.index=1
-          console.log(state.index)
-      },
-      move(state){
-          state.index=1
-    },
-    end(state){
-        state.index=2
-        console.log(state.index)
-    },
+      
     changeLoading(state, boolean){
       state.isLoading = boolean
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    设置
+   <van-button type="primary" size="large" @click="remove">退出登陆</van-button>
   </div>
 </template>
 
@@ -14,7 +14,12 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    remove(){
+        localStorage.removeItem("adminToken")
+        this.$router.push("/home/wd")
+    }
+  },
   created() {},
   mounted() {}
 };

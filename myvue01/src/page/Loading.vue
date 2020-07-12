@@ -1,7 +1,7 @@
 <template>
   <div class='loading'>
-    <van-loading type="spinner" size="100" color="#1989fa" vertical>
-      加载中...
+    <van-loading type="spinner" size="100" color="#fff" vertical>
+     <span style="color:#fff">加载中...</span> 
     </van-loading>
   </div>
 </template>
@@ -27,11 +27,11 @@ export default {
   width: 100%;
   height: 100%;
   position: fixed;
-  background:pink;
+  background:palevioletred;
   top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+  z-index: 9999;
 }
 </style>

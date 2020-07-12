@@ -4,7 +4,7 @@
      <div class="xf" id="moveDiv" v-jump="path"
 	      @mousedown.stop="down()" @touchstart.stop="down()"
 	      @mousemove.stop="move()" @touchmove.stop="move()"
-	      @mouseup.stop="end()" @touchend.stop="end()"
+	      @mouseup.stop="end()"    @touchend.stop="end()"
 	    >
 	     <van-icon  name="envelop-o" color="#ffffff" class="xfs" size="30" />
 	    </div>
@@ -30,8 +30,7 @@ export default {
   methods: {
   // 实现移动端拖拽
   down(){
-    this.$store.commit("down")
-
+   
     this.flags = true;
     let touch;
     if(event.touches){
@@ -45,7 +44,7 @@ export default {
     this.dy = moveDiv.offsetTop;
   },
   move(){
-       this.$store.commit("move")
+      
     if(this.flags){
       let touch ;
       if(event.touches){
@@ -73,16 +72,21 @@ export default {
       moveDiv.style.left = this.xPum+"px";
       moveDiv.style.top = this.yPum +"px";
       
-      //阻止页面的滑动默认事件
-      // document.addEventListener("touchmove",function(){ // 1.2 如果碰到滑动问题，请注意是否获取到 touchmove
-      //     // event.preventDefault();//jq 阻止冒泡事件
-      //     event.stopPropagation(); // 如果没有引入jq 就用 stopPropagation()
-      // },false);
+      // 阻止页面的滑动默认事件
+      document.addEventListener("touchmove",function(){ // 1.2 如果碰到滑动问题，请注意是否获取到 touchmove
+          // event.preventDefault();//jq 阻止冒泡事件
+          event.stopPropagation(); // 如果没有引入jq 就用 stopPropagation()
+          console.log("dianji")
+      },false);
+       document.addEventListener("touchstart",function(){ // 1.2 如果碰到滑动问题，请注意是否获取到 touchmove
+          // event.preventDefault();//jq 阻止冒泡事件
+          event.stopPropagation(); // 如果没有引入jq 就用 stopPropagation()
+      },false);
     }
   },
 //鼠标释放时候的函数
   end(){
-      this.$store.commit("end")
+  
     this.flags = false;
   }
 },
@@ -106,7 +110,7 @@ export default {
   position: fixed;
   right: 30px;
   bottom: 100px;
-
+   z-index: 999;
  .xfs{
    margin-top:15px;
    margin-left:15px;

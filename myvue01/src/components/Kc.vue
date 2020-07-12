@@ -1,5 +1,5 @@
 <template>
-  <div class="kc"  :style="{overflow:$store.state.index==1?'hidden':''}">
+  <div class="kc" >
     <van-nav-bar class title="特色课">
       <template #right>
         <van-icon name="search" size="18" @click="go_ss()"/>

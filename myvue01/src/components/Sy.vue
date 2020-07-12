@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :style="{overflow:$store.state.index==1?'hidden':''}">
+  <div class="wrapper"  :style="{overflow:$store.state.index==1?'hidden':''}">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item,index) in banner" :key="index">
         <img :src="item.banner_img" alt />
@@ -38,7 +38,7 @@
           <h3>{{ item.channel_info.name }}</h3>
           <br />
           <!-- <van-cell> -->
-          <li v-for="(v,i) in item.list" :key="i" @click="showPopup">
+          <li v-for="(v,i) in item.list" :key="i" @click="showPopup(v.teacher_id)">
             <div class="left">
               <img :src="v.teacher_avatar" alt />
             </div>
@@ -97,13 +97,13 @@
        
      </div>
      </div>
-   <van-popup v-model="show">
+   <van-popup  >
      <div class="tan">
-     
+         
         <h4>赶紧登陆一下吧</h4>
         <p style="margin-top:15px;margin-bottom:15px;">预约一对一辅导，浏览更多视频课程~~</p>
         <button class="btn">
-          <router-link to="/home/wd" style="color:#fff;">立即登录</router-link>
+          <router-link  style="color:#fff;">立即登录</router-link>
         </button>
       </div>
     </van-popup>
@@ -121,7 +121,6 @@ export default {
   data() {
     return {
       path: "/detail",
-      show: false,
       id: "",
       banner: [],
       List: []
@@ -139,8 +138,20 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    showPopup() {
-      this.show = true;
+    showPopup(v) {
+       let toke= localStorage.getItem("adminToken")
+        if(toke){
+          this.$router.push({
+             path:"/teacher",
+             query:{
+                 id:v
+             }
+
+          })
+        }else{
+           this.$router.push("/home/wd")
+             
+        }
     },
     async AjaxSwiper(){
       let { data:res } = await axios.get("https://www.365msmk.com/api/app/banner")

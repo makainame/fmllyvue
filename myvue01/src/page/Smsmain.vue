@@ -7,7 +7,7 @@
       <img src="../assets/E-学生个人中心-已登录-恢复的_04.gif" alt class="img_first" />
       <span>小文师弟</span>
       <img src="../assets/E-学生个人中心-已登录-恢复的_03.gif" alt />
-      <img src="../assets/E-学生个人中心-已登录-恢复的_11_03.gif" alt class="img_tree" />
+      <img src="../assets/E-学生个人中心-已登录-恢复的_11_03.gif" alt class="img_tree" @click="remove"/>
       <ul>
         <li>
           <p class="xf_tit">10</p>
@@ -90,7 +90,11 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    remove(){
+        this.$router.push("/sz")
+    }
+  },
   created() {},
   mounted() {}
 };

@@ -15,6 +15,7 @@ import Home from'@/components/Home'
 
 import Pwd from'@/page/Pwd'
 import Zc from'@/page/Zc'
+import sz from'@/page/Sz'
 import Pass from'@/page/Pass'
 import Detail from '@/page/Detail'
 import Smspwd from '@/page/Smspwd'
@@ -27,7 +28,7 @@ import lxyCt from'@/page/lxy/lxyCt'
 import lxyKd from'@/page/lxy/lxyKd'
 import lxyXt from'@/page/lxy/lxyXt'
 import lxyTj from'@/page/lxy/lxyTj'
-
+import teacher from'@/page/teacher'
 
 // import { component } from 'vue/types/umd'
 
@@ -100,9 +101,21 @@ export default new Router({
             }
         },
         {
+            path:"/sz",
+            component:()=> import ("../page/Sz.vue"),
+            meta:{
+                ollarr:true
+            }
+        },
+        {
             path:"/qdfss",
             name:'qdfss',
             component:()=> import ("../page/qdf/Qdfss.vue")
+        },
+        {
+            path:"/teacher",
+            name:'teacher',
+            component:()=> import ("../page/teacher.vue")
         },
         {
             path:"/qdfxqy",
