@@ -59,7 +59,12 @@ const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
  return originalPush.call(this, location).catch(err => err)};
   
-  
+// Vue.filter("toFixed",(val,inp)=>{
+//   return "￥"+ Number(val).toFixed(inp)
+// })
+// Vue.filter("toText",(val)=>{
+// return    Number(val)+"人购买"
+// })
 
 
 new Vue({

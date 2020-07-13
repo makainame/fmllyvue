@@ -21,7 +21,10 @@
                 <p class="teachername">{{ teachList.teacher_name }} <span style="color:#EB6100;">{{ teachList.level_name }}</span></p>
                 <p class="teacherage">{{ teachList.sex |sexF }} {{ teachList.teach_age }}年教龄</p>
                 </div>
-                <div><button>关注</button></div>
+                <div>
+                    <button  @click="buut">{{gz | totext}}</button>
+                  
+                    </div>
             </div>
             <div class="btndiv">
                 <p v-for="(u,i) in teachList.tag_content" :key="i">{{ u }}</p>
@@ -81,7 +84,8 @@ export default {
         active: 3,
         xiangxi:{},
         xiangarr:[],
-        zhujiang:[]
+        zhujiang:[],
+         gz:''
     };
   },
   props: {},
@@ -100,10 +104,25 @@ export default {
              case 0:
              return "免费"
          }
-     }
+     },
+     totext(val){
+      
+           if(val==1){
+                 return "已关注"
+                 
+           }else if(val==2){
+                 return "关注"
+                  
+           }
+           return val
+       }
   },
   mounted() {
-    //   讲师详情头部
+    
+             
+  },
+  created(){
+//   讲师详情头部
     axios.get(`https://www.365msmk.com/api/app/teacher/${this.$route.query.id}`).then((res)=>{
         console.log(res)
         // res.data = {
@@ -139,12 +158,30 @@ export default {
         this.zhujiang=res.data.data.list
         console.log(this.zhujiang)
     })
+    axios.get(`https://www.365msmk.com/api/app/teacher/${this.$route.query.id}`).then((res)=>{
+                   console.log(res)
+           
+                this.gz=res.data.data.flag
+                // console.log(res.data)
+                console.log(this.gz)
+    })
   },
   methods: {
     gooto(){
       this.$router.go(-1)
-    }
-  }
+    },
+    async buut(){
+              
+              let {data:res}= await this.$http.get(`/api/app/teacher/collect/${this.$route.query.id}`)
+              console.log(res)
+           
+                this.gz=res.data.flag
+                // console.log(res.data)
+                console.log(this.gz)
+    },
+    
+  },
+  
 };
 </script>
 <style scoped>

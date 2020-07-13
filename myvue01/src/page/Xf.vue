@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
-    <iframe  src="" frameborder="0"></iframe>
+    <!-- <iframe  src="" frameborder="0" class="fram"></iframe> -->
   </div>
 </template>
 
 <script>
-import '../util/meiqia.js'
+// import '../util/meiqia.js'
 export default {
   components: {},
   props: {},
@@ -21,5 +21,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.wrapper{}
+.fram{
+  z-index: 999;
+}
 </style>

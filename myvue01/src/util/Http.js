@@ -11,9 +11,9 @@ if (!DeviceID) {
     localStorage.DeviceID = DeviceID;
 }
 let ID = DeviceID;
-axios.defaults.baseURL = 'http://120.53.31.103:84'
+axios.defaults.baseURL = 'https://www.365msmk.com'
 //请求拦截器
-axios.interceptors.request.use(function(config) {
+axios.interceptors.request.use(function(config){
     config.headers = {
         DeviceId:ID,
         DeviceType:"H5"

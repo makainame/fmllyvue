@@ -29,7 +29,7 @@ import lxyKd from'@/page/lxy/lxyKd'
 import lxyXt from'@/page/lxy/lxyXt'
 import lxyTj from'@/page/lxy/lxyTj'
 import teacher from'@/page/teacher'
-
+import Lsgz from'@/page/Lsgz'
 // import { component } from 'vue/types/umd'
 
 import Mkrouter from'@/page/Mkrouter'
@@ -197,7 +197,17 @@ export default new Router({
             path:"/smssend",
             name:'smssend',
             component:()=> import ("../page/Smssend")
-        }
+        },
+        {
+            path:"/lsgz",
+            name:'lsgz',
+            component:()=> import ("../page/Lsgz.vue")
+        },
+          {
+            path:"/mycollect",
+            name:'mycollect',
+            component:()=> import ("../page/Mycollect")
+        }
        
      ]
 })

@@ -84,8 +84,8 @@
           <h3>{{ item.channel_info.name }}</h3>
 
           <br />
-          <van-cell is-link @click="showPopup">
-            <li v-for="(a,b) in item.list" :key="b">
+         
+            <li v-for="(a,b) in item.list" :key="b"  @click="showPopup">
               <div class="left">
                 <img :src="a.teacher_avatar" alt />
               </div>
@@ -99,9 +99,9 @@
                 <p class="content">{{ a.introduction }}</p>
               </div>
             </li>
-          </van-cell>
+         
         </ul>
-        <xf></xf>
+        <!-- <xf></xf> -->
       </div>
     </div>
     <!-- 首页列表结束 -->

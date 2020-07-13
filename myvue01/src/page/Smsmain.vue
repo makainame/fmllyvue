@@ -42,8 +42,8 @@
         <h3>课程相关</h3>
         <van-grid :border="false" >
           <van-grid-item icon="column" text="我的作业" style='color:#ff944c;'/>
-          <van-grid-item icon="map-marked" text="关注的老师" style='color:#ff944c;'/>
-          <van-grid-item icon="star" text="我的收藏" style='color:#ff944c;'/>
+          <van-grid-item icon="map-marked" text="关注的老师" style='color:#ff944c;' @click="laoshi"/>
+          <van-grid-item icon="star" text="我的收藏" style='color:#ff944c;' @click='goCollect'/>
           <van-grid-item icon="share" text="我的下载" style='color:#ff944c;'/>
         </van-grid>
       </div>
@@ -93,6 +93,12 @@ export default {
   methods: {
     remove(){
         this.$router.push("/sz")
+    },
+    laoshi(){
+        this.$router.push("/lsgz")
+    },
+    goCollect(){
+      this.$router.push({path:'/mycollect'})
     }
   },
   created() {},

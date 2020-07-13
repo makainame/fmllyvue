@@ -10,15 +10,28 @@
       <p>{{ Start.title }}</p>
 
       <span class="stat_logo">
-        <van-icon name="star" size="20" @click="Changeclick" :style="{color:flag?'red':'#000'}" />
+       
+        <van-icon   v-if="show1 == 0"
+          name="star"
+          size="20"
+           color="#ccc"
+          @click="Changeclick1" 
+          
+        />
+        <van-icon   v-if="show1 == 1"
+          name="star" 
+          size="20"
+          @click="Changeclick2"
+           color="red"
+        />
       </span>
       <span class="stat_logo2">{{ Start.price | priceShow }}</span>
       <p class="stat_bz">
-        <span>共{{ Start.status}}课时</span>
-        <span>{{ Start.sales_num}}人报名</span>
+        <span>共{{ Start.status }}课时</span>
+        <span>{{ Start.sales_num }}人报名</span>
       </p>
     </div>
-    <div class="tea" v-for="(item,index) in Tea" :key="index">
+    <div class="tea" v-for="(item, index) in Tea" :key="index">
       <h3>教学团队</h3>
       <p>
         <img :src="item.teacher_avatar" alt />
@@ -27,11 +40,11 @@
     </div>
     <div class="tat_cj">
       <h3>课程介绍</h3>
-      <p v-html="Start.course_details">{{ Start.course_details}}</p>
+      <p v-html="Start.course_details">{{ Start.course_details }}</p>
     </div>
     <div class="tat_cj">
       <h3>课程大纲</h3>
-      <p v-html="Start.course_details">{{ Start.course_details}}</p>
+      <p v-html="Start.course_details">{{ Start.course_details }}</p>
     </div>
     <div data-v-0b37a264 id="com" class="teat_comment">
       <h3>课程评论</h3>
@@ -46,11 +59,17 @@ export default {
   props: {},
   data() {
     return {
+      id: "",
       Start: [],
       Tea: [],
       value: 1,
       flag: false,
-      activeIndex: 0
+      activeIndex: 0,
+      data1:'1',
+      data2:'',
+      show1:0,
+      collect_id:""
+
     };
   },
   watch: {},
@@ -61,36 +80,57 @@ export default {
       } else {
         return (val / 100).toFixed(2);
       }
-    }
+    },
   },
   computed: {},
   methods: {
     toGo() {
       this.$router.go(-1);
     },
-    Changeclick() {
-      this.flag = !this.flag;
-      if (this.flag) {
-        this.$toast.success("收藏成功");
-      } else {
-        this.$toast.fail("取消收藏");
-      }
-    }
+    async Changeclick1() {
+      let { data: res } = await this.$http.post("https://365msmk.com/api/app/collect", {
+        course_basis_id: this.id,
+        type: 1,
+      });
+      this.$axios.get(
+        `https://365msmk.com/api/app/courseInfo/basis_id=${this.id}`
+      )
+      .then((msg) => {
+        // console.log(msg.data.data.info);
+        this.show1 = msg.data.data.info.is_collect
+      });
+    },
+     async Changeclick2(){
+     console.log(this.collect_id)
+      let { data: res } = await this.$http.put(`/api/app/collect/cancel/${this.collect_id}/1`);
+      this.$axios.get(
+        `https://365msmk.com/api/app/courseInfo/basis_id=${this.id}`
+      )
+      .then((msg) => {
+        // console.log(msg.data.data.info);
+        this.show1 = msg.data.data.info.is_collect
+      });
+    },
   },
   created() {},
   mounted() {
-    console.log(this.$route.query.id);
+    // console.log(this.$route.query.id);
+    this.id = this.$route.query.id;
     this.$axios
       .get(
-        `https://365msmk.com/api/app/courseInfo/basis_id=${this.$route.query.id}`
+        `https://365msmk.com/api/app/courseInfo/basis_id=${this.id}`
       )
-      .then(msg => {
-        console.log(msg.data.data.info);
+      .then((msg) => {
+        console.log(msg)
+        // console.log(msg.data.data.info);
         this.Start = msg.data.data.info;
         this.Tea = msg.data.data.teachers;
-        console.log(this.Start);
+        this.collect_id = msg.data.data.info.collect_id
+        // console.log(this.Start);
+        // console.log(msg)
+        this.show1 = msg.data.data.info.is_collect
       });
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -119,7 +159,7 @@ export default {
   padding-top: 30px;
   padding-left: 30px;
   box-sizing: border-box;
- 
+
   p {
     width: 80%;
     font-size: 16px;
@@ -147,7 +187,7 @@ export default {
   margin-top: 15px;
   background: #ffffff;
   padding-left: 30px;
-  padding-top:30px;
+  padding-top: 30px;
   box-sizing: border-box;
 
   h3 {
@@ -174,7 +214,7 @@ export default {
   margin-top: 15px;
   background: #ffffff;
   padding-left: 30px;
- padding-top:30px;
+  padding-top: 30px;
   box-sizing: border-box;
 
   h3 {

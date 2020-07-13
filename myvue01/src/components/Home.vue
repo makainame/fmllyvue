@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  
+  import '../util/meiqia'
 export default {
   components: {
     
