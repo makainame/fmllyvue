@@ -1,6 +1,16 @@
 <template>
   <div class="wrapper">
-   <van-button type="primary" size="large" @click="remove">退出登陆</van-button>
+    <van-nav-bar
+  title="设置"
+  left-arrow
+  @click-left="onClickLeft"
+  @click-right="onClickRight"
+/>  
+ <div class="pass">
+       <span class="spa" >设置密码</span> <van-icon name="arrow" color="#3388ff" class="zc" @click="password"/>  
+  <van-button type="primary" size="large" @click="remove" class="but"  color="linear-gradient(to right, #4bb0ff, #6149f6)">退出登陆</van-button>
+</div>
+ 
   </div>
 </template>
 
@@ -18,6 +28,12 @@ export default {
     remove(){
         localStorage.removeItem("adminToken")
         this.$router.push("/home/wd")
+    },
+    onClickLeft(){
+      this.$router.go(-1)
+    },
+    password(){
+         this.$router.push("/smspwd")
     }
   },
   created() {},
@@ -25,5 +41,23 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.wrapper{}
+.pass{
+  width: 100%;
+  height: 150px;
+  background: #ccc;
+  font-size: 16px;
+  padding-top: 20px;
+  margin-top: 10px;
+  .but{
+    margin-top: 40px;
+  }
+  .spa{
+      float: left;
+  }
+  .zc{
+    //  display: inline;
+     float: right;
+  }
+}
+
 </style>

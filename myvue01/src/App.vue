@@ -5,8 +5,8 @@
    <lod v-if="isLoading"></lod>
             <router-view ></router-view>
      <!-- 信封组件 -->
-       
-    <xf v-show="!$route.meta.ollarr"></xf>
+      
+    <!-- <xf v-show="!$route.meta.ollarr"></xf> -->
   </div>
   
 </template>

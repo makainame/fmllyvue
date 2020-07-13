@@ -96,7 +96,7 @@
                     style="color:red;font-size:16px;font-weight:bold;"
                   >{{ a.level_name }}</span>
                 </p>
-                <p>{{ a.introduction }}</p>
+                <p class="content">{{ a.introduction }}</p>
               </div>
             </li>
           </van-cell>

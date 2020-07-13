@@ -19,7 +19,10 @@ axios.interceptors.request.use(function(config) {
         DeviceType:"H5"
     }
     let adminToken = localStorage.getItem("adminToken")
-    config.headers.Authorization =`Bearer adminToken`
+    if(adminToken){
+        config.headers.Authorization =`Bearer ${adminToken}`
+    }
+   
     return config;
 },function(error){
     return Promise.reject(error)

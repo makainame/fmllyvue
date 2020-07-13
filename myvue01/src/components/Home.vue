@@ -1,5 +1,6 @@
 <template>
   <div class="wrap">
+    
             <router-view ></router-view>
   <van-tabbar  route z-index="888">
   <van-tabbar-item replace to="sy" icon="home-o">
@@ -20,12 +21,12 @@
     我的
   </van-tabbar-item>
 </van-tabbar>
-
+ 
   </div>
 </template>
 
 <script>
-
+  
 export default {
   components: {
     

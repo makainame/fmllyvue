@@ -55,16 +55,15 @@ export default {
   methods: {
     onSubmit(values) {
       console.log("submit", values);
-      this.$router.push({path:'/smsmain'})
+      // this.$router.push({path:'/smsmain'})
     },
     async btn() {
-      alert(1111)
       let { data: res } = await this.$http.post("/api/app/login", {
         mobile: this.phone,
         password: this.password,
         type: 1,
       });
- window.localStorage.setItem("adminToken", res.data.remember_token);
+     window.localStorage.setItem("adminToken", res.data.remember_token);
       // console.log(res)
       if (res.code == 200) {
         this.$toast.success(res.msg);
