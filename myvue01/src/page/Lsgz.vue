@@ -47,6 +47,7 @@ export default {
                 
       },
       dele(id){
+          alert(111)
             this.$router.push({
                 path:"/teacher",
                 query:{

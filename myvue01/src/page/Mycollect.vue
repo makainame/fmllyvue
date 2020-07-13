@@ -7,7 +7,7 @@
       @click-left="onClickLeft"
     
     />
-  <div class="box" v-for="(item,index) in arr" :key="index">
+  <div class="box" v-for="(item,index) in arr" :key="index"  @click="deles(item.course_id)">
 
   
   <van-card 
@@ -60,6 +60,15 @@ export default {
   methods: {
       onClickLeft(){
          this.$router.go(-1)
+      },
+      deles(id){
+        alert(111)
+         this.$router.push({
+           path:"/detail",
+           query:{
+              id:id
+           }
+         })
       },
      async Changeclick(index,collect_id){
     //  console.log(this.collect_id)
