@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
-    <!-- <iframe  src="" frameborder="0" class="fram"></iframe> -->
+    <iframe  src="" frameborder="0" class="fram"></iframe>
   </div>
 </template>
 
 <script>
-// import '../util/meiqia.js'
+import '../util/meiqia.js'
 export default {
   components: {},
   props: {},

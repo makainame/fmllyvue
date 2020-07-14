@@ -110,9 +110,12 @@ export default {
     margin:0;
   padding:0;
 }
+.smsmain{
+    margin-bottom: 50px;
+}
 .sms-main {
   background: #fafafa;
-
+   
 }
 .user-header {
   width: 100%;

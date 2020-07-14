@@ -24,7 +24,7 @@
           name="star"
           size="20"
            color="orchid"
-          @click="Changeclick(index,item.collect_id)" 
+          @click.stop="Changeclick(index,item.collect_id)" 
           
         />
        
@@ -62,7 +62,6 @@ export default {
          this.$router.go(-1)
       },
       deles(id){
-        alert(111)
          this.$router.push({
            path:"/detail",
            query:{

@@ -124,24 +124,7 @@ export default {
   created(){
 //   讲师详情头部
     axios.get(`https://www.365msmk.com/api/app/teacher/${this.$route.query.id}`).then((res)=>{
-        console.log(res)
-        // res.data = {
-        //     "code":200,
-        //     "msg":"操作成功",
-        //     "data":{
-        //         "teacher":{
-        //             "id":191,
-        //             "avatar":"https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019wX5ZNRNxBT1577773182.jpg",
-        //             "level_name":"M20",
-        //             "teacher_name":"文卫星",
-        //             "sex":0,
-        //             "age":61,
-        //             "teach_age":44,
-        //             "tag_content":null
-        //         },
-        //         "flag":2
-        //     }
-        // }
+       
         this.teachList=res.data.data.teacher;
         console.log(this.teachList)
     })
