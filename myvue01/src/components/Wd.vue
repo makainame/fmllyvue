@@ -11,7 +11,7 @@
     </div>
     <br /><br />
     <van-form @submit="onSubmit">
-      <div class="div1"  :style="{borderBottom:activeIndex==1?'1px solid red':'',margin:'0px 10px'}">
+      <div class="div1"  :style="{borderBottom:activeIndex==1?'1px solid red':'',margin:'0px 40px'}">
       <van-field  
            @click="activeIndex=1" 
            @blur="blurFn"
@@ -24,7 +24,7 @@
       </div>
    
       
-      <div class="div2"  :style="{borderBottom:activeIndex==2?'1px solid red':'',margin:'0px 10px'}">
+      <div class="div2"  :style="{borderBottom:activeIndex==2?'1px solid red':'',margin:'0px 40px'}">
       <van-field  
        @click="activeIndex=2" 
         @blur="blurFn"
@@ -124,6 +124,6 @@ export default {
   margin-left: 10px;
 }
 .div1,.div2{
-    margin: 0px 10px;
+    margin: 0px 30px;
 }
 </style>

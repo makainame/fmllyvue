@@ -57,7 +57,7 @@ export default {
           this.navBarFixed = false
            this.$store.state.isHove=true
         }
-        console.log(scrollTop)
+        // console.log(scrollTop)
      },
      but(index,comm){
         this.active1=index
