@@ -11,15 +11,23 @@
     </div>
     <br /><br />
     <van-form @submit="onSubmit">
-      <van-field
+      <div class="div1"  :style="{borderBottom:activeIndex==1?'1px solid red':'',margin:'0px 10px'}">
+      <van-field  
+           @click="activeIndex=1" 
+           @blur="blurFn"
         v-model="phone"
         name="手机号"
         label="手机号"
         placeholder="手机号"
         :rules="[{ required: true, message: '请填写手机号' }]"
       />
-      <br>
-      <van-field
+      </div>
+   
+      
+      <div class="div2"  :style="{borderBottom:activeIndex==2?'1px solid red':'',margin:'0px 10px'}">
+      <van-field  
+       @click="activeIndex=2" 
+        @blur="blurFn"
         v-model="password"
         type="password"
         name="密码"
@@ -28,7 +36,8 @@
         colon:true
         :rules="[{ required: true, message: '请填写密码' }]"
       />
-      <br />
+      </div>
+     
       <div class="bz">
         <span><router-link to='/pwd' style='color:#ccc'>找回密码</router-link></span>
         <span> <router-link to='/zc' style='color:#ccc'>注册/验证码登录</router-link></span>
@@ -50,12 +59,16 @@ export default {
     return {
       password: "",
       phone: "",
+      activeIndex:''
     };
   },
   methods: {
     onSubmit(values) {
       console.log("submit", values);
       // this.$router.push({path:'/smsmain'})
+    },
+    blurFn(){
+       this.activeIndex=-1
     },
     async btn() {
       let { data: res } = await this.$http.post("/api/app/login", {
@@ -109,5 +122,8 @@ export default {
   font-size: 16px;
   font-weight: normal;
   margin-left: 10px;
+}
+.div1,.div2{
+    margin: 0px 10px;
 }
 </style>

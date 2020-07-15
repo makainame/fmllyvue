@@ -10,6 +10,7 @@
       <van-dropdown-item v-model="value2" :options="option2" />
       <van-dropdown-item v-model="value3" :options="option3" />
     </van-dropdown-menu>
+    
     <ul class="qdf_ul">
       <li class="qdf_li" v-for="item of qdf_nav" :key="item.index" @click="qdf_tzxqy()">
         <p class="qdf_title">
@@ -33,7 +34,7 @@
           </p>
       </li>
     </ul>
-  
+ 
   </div>
 </template>
 
@@ -42,7 +43,7 @@
 export default {
   name:"kc",
   components: {
-   
+   scroll,
   },
   props: {},
   data() {

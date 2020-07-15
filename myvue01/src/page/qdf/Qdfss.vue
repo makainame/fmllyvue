@@ -1,5 +1,4 @@
 <template>
-  
     <div id="qdfss">
       <div  class="qdf_info">
         <header  class="qdf_header">
@@ -11,29 +10,59 @@
             />
           </span>
           <span >
-            <input  placeholder="请输入内容" class="input" />
+            <input  placeholder="请输入内容" v-model="text" class="input" @click="inp"/>
           </span>
-          <span @click="qdf_fh()">取消</span>
-          <!---->
+          <span @click="qdf_fh1()" v-if="show">取消</span>
+          <span @click="qdf_fh2()" v-else style="color:black">搜索</span>
         </header>
-        <section  class="qdf_search">
+             
+     <ul class="qdf_ul">
+      <li class="qdf_li" v-for="item of arr" :key="item.index" @click="qdf_tzxqy(item.id)">
+        <p class="qdf_title">
+          <font>{{item.title}}</font>
+          </p>
+          <div class="qdf_time">
+            <p class="qdf_after">{{item.time}}</p>
+            <p>共{{item.total_periods}}课时</p>
+          </div>
+          <div class="qdf_teacher">
+        <div class="qdf_teacher_item"  v-for="(items,index) in item.teachers_list" :key="index">
+<img :src="items.teacher_avatar" alt="">
+<font>{{items.teacher_name}}</font>
+        </div>
+          </div>
+          <p class="qdf_info">
+            <span class="qdf_person" style="font-size:16px">
+              {{item.sales_num}}人已报名
+            </span>
+            <font class="qdf_free">{{item.con}}</font>
+          </p>
+      </li>
+    </ul>
+
+
+        <section  class="qdf_search" v-if="isShow">
           <header  class="qdf_his-header">
             <p >
               <span >历史搜索</span>
-              <span>
-                <i><van-icon name="delete" /></i>
+              <span  @click="deles">
+                <i><van-icon   name="delete" /></i>
               </span>
             </p>
+            
           </header>
-          <div class="list"></div>
+      <div class="list">
+               <ul>
+                 <li v-for="(item,index) in arrlist" :key="index" @click="loca(item)">
+                   {{item}}
+                 </li>
+               </ul>
+          </div>
         </section>
-        <div  role="feed" class="qdf_van-list">
-          <div class="qdf_placeholder"></div>
-        </div>
-        <!---->
+         
+     
       </div>
-      <!---->
-      <!---->
+      
     </div>
  
 </template>
@@ -41,23 +70,104 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      show:true,
+      isShow:true,
+      text:"",
+      arr:'',
+      arrlist:[]
+    };
   },
-  created() {},
+   watch: {
+    
+   },
+  created() {
+     let his=JSON.parse(localStorage.getItem("history"))
+       if(his){
+           this.arrlist=his
+       }
+  },
   methods: {
       qdf_fh(){
           this.$router.go(-1)
-      }
+      },
+      inp() {
+         this.show=false
+         
+      },
+      qdf_fh1(){
+        this.$router.go(-1)
+      },
+      loca(item){
+           this.text=item
+            this.arrlist=""
+      },
+      deles(){
+  
+          localStorage.removeItem("history")
+          this.arrlist=""
+          this.text=""
+      },
+      qdf_tzxqy(id){
+         this.$router.push({
+           path:"/qdfxqy",
+           query:{
+              id:id
+           }
+         })
+      },
+
+     async qdf_fh2(){
+          let {data:res}= await this.$http.get(`/api/app/courseBasis?limit=10&page=1&course_type=0&keywords=${this.text}`)
+              
+            this.arr=res.data.list
+           
+            console.log(res.data.list)
+            console.log(this.arr)
+              console.log(res)
+               if(res.code==200){
+                   this.$toast.success(res.msg)
+                     this.isShow=false
+               }else{
+                   this.$toast.fail(res.msg);
+               }
+              //  存储历史记录
+                let arr=[]
+           let his=JSON.parse(localStorage.getItem("history"))
+           if(his){
+               arr=his
+           }
+           if(arr.length>0){
+            
+            let bool = arr.some((item)=>{
+              return item == this.text
+            })
+            console.log(bool)
+            if(!bool){
+              arr.push(this.text)
+            }
+           } else {
+              arr.push(this.text)
+           }
+             
+           console.log(arr)
+           this.arrlist=his
+           localStorage.setItem("history",JSON.stringify(arr))
+              console.log(this.arrlist)
+      },
+      
+
   },
   mounted() {}
 };
 </script>
 
-<style scoped lang="scss" >
+<style socped  lang="scss">
 #qdfss{
     background: #fff;
     min-height: 100vh;
     box-sizing: border-box;
+    margin-top: 20px;
 }
 .qdf_info {
     padding-bottom: 1.06667rem;
@@ -125,43 +235,130 @@ export default {
     color: #333;
     font-weight: 700;
 }
-.list {
+.list ul{
+  font-size: 16px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: space-around;
+    text-align: center;
+}
+.list ul li{
+    // flex: 1;
+    background: #ccc;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 40px;
 }
 .qdf_placeholder {
     height: 0;
     pointer-events: none;
 }
+ .qdf_ul {
+    padding: .4rem;
+    padding: 4vw;
+    background: #F0F2F5;
+}
+.qdf_teacher_item img{
+    width: .72rem;
+    width: 7.2vw;
+    height: .72rem;
+    height: 7.2vw;
+    border-radius: 50%;
+}
+.qdf_li {
+    background: #fff;
+    border-radius: .13333rem;
+    border-radius: 1.33333vw;
+    padding: 0 .37333rem;
+    padding: 0 3.73333vw;
+    margin-bottom: .4rem;
+    margin-bottom: 4vw;
+    position: relative;
+}
+.qdf_title {
+    padding-top: .4rem;
+    padding-top: 4vw;
+}
+.qdf_title font {
+    font-size: .42667rem;
+    font-size: 4.26667vw;
+    font-family: PingFangSC-Medium;
+    font-weight: 400;
+    color: #333;
+}
+.qdf_time {
+    display: flex;
+    align-items: center;
+}
+.qdf_after {
+    padding-left: .53333rem;
+    padding-left: 5.33333vw;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAGdElEQ…7D7bIT6T8ppX5D8qmltjcNVN9Rf6pC343nMmv03YDqJvO/L6pVWKmfOusAAAAASUVORK5CYII=) no-repeat 0;
+    background-size: .37333rem .37333rem;
+    background-size: 3.73333vw 3.73333vw;
+}
+.qdf_time p {
+    height: .8rem;
+    height: 8vw;
+    line-height: .8rem;
+    line-height: 8vw;
+    display: inline-block;
+    font-size: .32rem;
+    font-size: 3.2vw;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: #666;
+    padding-right: .45333rem;
+    padding-right: 4.53333vw;
+    position: relative;
+}
+.qdf_teacher {
+    height: 1.73333rem;
+    height: 17.33333vw;
+    display: flex;
+}
+.qdf_teacher_item font {
+    font-size: .32rem;
+    font-size: 3.2vw;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(0,0,0,.45);
+    margin-left: .22667rem;
+    margin-left: 2.26667vw;
+    margin-right: .46667rem;
+    margin-right: 4.66667vw;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.qdf_free{
+    color: #44a426;
+    font-size: .42667rem;
+    font-size: 4.26667vw;
+}
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

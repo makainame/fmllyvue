@@ -1,7 +1,7 @@
 <template>
   <div class='loading'>
-    <van-loading type="spinner" size="100" color="#fff" vertical>
-     <span style="color:#fff">加载中...</span> 
+    <van-loading type="spinner" size="100" color="palevioletred" vertical>
+     <span style="color:palevioletred">加载中...</span> 
     </van-loading>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
   width: 100%;
   height: 100%;
   position: fixed;
-  background:palevioletred;
+  // background:palevioletred;
   top: 0px;
   display: flex;
   align-items: center;
