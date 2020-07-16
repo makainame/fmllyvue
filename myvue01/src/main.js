@@ -19,25 +19,7 @@ Vue.prototype.$http=axios
 Vue.prototype.$toast = Toast
 Vue.use(Vant)
 
-// / 编程导航 自定义指令
-Vue.directive("jump",(el,{value},vnode)=>{
-  el.onclick=(()=>{
-      vnode.context.$router.push({
-          path:value
-      })
-  })
-})
 
-Vue.directive("detail",(el,{value},vnode)=>{
-  el.onclick=(()=>{
-      vnode.context.$router.push({
-          path:value
-      })
-  })
-})
-// 拖拽
-
-     
 // / 编程导航 自定义指令
 Vue.directive("jump",(el,{value},vnode)=>{
         el.onclick=(()=>{
@@ -46,19 +28,26 @@ Vue.directive("jump",(el,{value},vnode)=>{
             })
         })
 })
-Vue.directive("detail",(el,{value},vnode)=>{
-  el.onclick=(()=>{
-      vnode.context.$router.push({
-          path:value
-      })
-  })
+
+// 全局守卫钩子
+router.beforeEach((to, from, next) => {
+ 
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
 })
 
 //解决重复点击导航报错
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
  return originalPush.call(this, location).catch(err => err)};
-  
+  // 二维码插件
+  import VueQriously from 'vue-qriously'
+  Vue.use(VueQriously)
+
+
 // Vue.filter("toFixed",(val,inp)=>{
 //   return "￥"+ Number(val).toFixed(inp)
 // })

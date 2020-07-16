@@ -70,7 +70,7 @@
 >
   <van-cell  >
 <ul class="qdf_ul">
-      <li class="qdf_li" v-for="(item,index) in axioslist" :key="index" @click="qdf_tzxqy()">
+      <li class="qdf_li" v-for="(item,index) in axioslist" :key="index" @click="qdf_tzxqy(item.id)">
         <p class="qdf_title">
           <font>{{item.title}}</font>
           </p>
@@ -144,7 +144,7 @@ export default {
   data() {
     return {
       couerseInfo:{
-           page: 1, /* 页数 */
+            page: 1, /* 页数 */
             limit: 10,/* 数量 */
             course_type: 0,/* 筛选类型 */
             classify_id: '',/* 页数 */
@@ -212,8 +212,13 @@ export default {
     go_ss(){
       this.$router.push("/qdfss")
     },
-    qdf_tzxqy(){
-        this.$router.push("/qdfxqy")
+    qdf_tzxqy(id){
+        this.$router.push({
+          path:"/detail",
+          query:{
+             id:id
+          }
+        })
     },
      async  axiosFn() {
            let {data:res}= await this.$http.get('https://www.365msmk.com/api/app/courseClassify?')
@@ -230,8 +235,9 @@ export default {
     },
     async axiosuserFn(){
               let {data:res}= await this.$http.get(`/api/app/courseBasis`,{
-                params:this.couerseInfo
+                    params:this.couerseInfo
               })
+                console.log(res)
               if(res.code!=200){
                     this.$toast(res.msg)
                     return false
@@ -242,7 +248,7 @@ export default {
               }else{
                   this.axioslist=res.data.list
               }
-               if(this.axioslist.length>=20){
+               if(this.axioslist.length>=5){
                  console.log(this.finished)
                    this.finished = true;
                }

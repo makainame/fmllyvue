@@ -5,6 +5,7 @@ import axios from'axios'
 axios.interceptors.request.use(
     config => {
       store.state.isLoading = true
+      store.state.isloaText=true
       return config;
     },
     error => {
@@ -17,6 +18,7 @@ axios.interceptors.request.use(
     response => {
       // console.log(response)
       store.state.isLoading = false
+      store.state.isloaText=false
       // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
       // 否则的话抛出错误
       if (response.status === 200) {

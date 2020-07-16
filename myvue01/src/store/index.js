@@ -10,7 +10,9 @@ const store = new Vuex.Store({
   state:{
       isLoading:false,
       index:null,
-      isHove:true
+      isHove:true,
+      isDetail:false
+  
      
   },
   mutations:{

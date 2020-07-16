@@ -60,10 +60,11 @@
         <ul>
           <h3>{{ item.channel_info.name }}</h3>
           <br />
-          <li v-for="(j,k) in item.list" :key="k" v-detail="path" @click='statDetail(j.id)'>
+          <li v-for="(j,k) in item.list" :key="k" v-detail="path" @click='statDetail(j.id,j.course_type)'>
             <p>{{ j.title }}</p>
             <br />
             <span>共{{j.total_periods }}课时</span>
+             <img src="../assets/微信图片_20200716180913.png"   alt="" v-if="j.has_buy==1" class="image">
             <br />
             <p v-for="(s,y) in j.teachers_list" :key="y">
               <img :src="s.teacher_avatar" alt />
@@ -132,7 +133,10 @@ export default {
       path: "/detail",
       id: "",
       banner: [],
-      List: []
+      List: [],
+      arr:'',
+      arrlist:''
+      // isShow:false
     };
   },
   filters: {
@@ -156,7 +160,7 @@ export default {
           this.$router.push({
              path:"/teacher",
              query:{
-                 id:v
+                 id:v,
              }
 
           })
@@ -167,26 +171,31 @@ export default {
     },
     //轮播图接口获取
     async AjaxSwiper() {
-      let { data: res } = await this.$axios.get(
-        "https://www.365msmk.com/api/app/banner"
+      let { data: res } = await this.$http.get(
+        "/api/app/banner"
       );
       console.log(res, 123);
       this.banner = res.data;
     },
     //首页数据列表获取
     async AjaxList() {
-      let { data: res } = await this.$axios.get(
-        "https://www.365msmk.com/api/app/recommend/appIndex"
+      let { data: res } = await this.$http.get(
+        "/api/app/recommend/appIndex"
       );
-      console.log(res, 123);
+      //  if(res.data)
+      
       this.List = res.data;
+      
+      
     },
     //课程详情页
-     statDetail(id){
+     statDetail(id,type){
+           
           this.$router.push({
             path:'/detail',
             query:{
-              id:id
+              id:id,
+              type:type
             }
           })
      }
@@ -198,10 +207,15 @@ export default {
 
   },
   created() {
+   
+    
+     
   },
   mounted() {
+     
     this.AjaxSwiper();
     this.AjaxList();
+   
   }
 };
 </script>
@@ -337,6 +351,7 @@ export default {
     li {
       width: 345px;
       height: 190px;
+      position: relative;
       background: #ffffff;
       flex-direction: row;
       flex-wrap: wrap;
@@ -347,6 +362,15 @@ export default {
         width: 40px;
         height: 40px;
         border-radius: 50%;
+      }
+      .image{
+        width: 80px;
+        height: 80px;
+         position: absolute;
+         top: 15px;
+         right: 20px;
+
+         
       }
       p {
         font-size: 16px;
@@ -445,4 +469,5 @@ h3 {
   padding: 0 !important;
   box-sizing: border-box !important;
 }
+
 </style>

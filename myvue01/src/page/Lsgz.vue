@@ -39,7 +39,7 @@ export default {
       },
     async  gzz(id,index) {
         alert(1111)
-        let {data:res} = await this.$http.get(`https://www.365msmk.com/api/app/teacher/collect/`+id)
+        let {data:res} = await this.$http.get(`/api/app/teacher/collect/`+id)
                  console.log(res.data)
                         
                       this.list.splice(index,1)
@@ -57,7 +57,7 @@ export default {
       }
   },
   created() {
-        this.$http.get("https://www.365msmk.com/api/app/collect?page=1&limit=10&type=2").then((res)=>{
+        this.$http.get("/api/app/collect?page=1&limit=10&type=2").then((res)=>{
                 console.log(res)
                 this.list=res.data.data.list
                
@@ -73,5 +73,23 @@ export default {
 <style lang="scss" scoped>
 .overfolw{
     overflow: hidden;
+}
+.box{
+  width: 100%;
+  .van-card__price {
+    width: 100%;
+    display: inline-block;
+    color: #323233;
+    font-weight: 500;
+    font-size: 0.3rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  
+}
+.van-card__price-integer {
+    font-size: 0.3rem;
+    
+}
 }
 </style>

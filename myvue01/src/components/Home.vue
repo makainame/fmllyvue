@@ -3,8 +3,8 @@
    
  <router-view ></router-view>
   <div class="bottom">
-  <van-tabbar  route z-index="888">
-  <van-tabbar-item replace to="sy" icon="home-o">
+  <van-tabbar  route z-index="888" inactive-color="#000"  active-color="#07c160"  v-model="active">
+  <van-tabbar-item replace to="sy" icon="wap-home">
     首页
   </van-tabbar-item>
   <van-tabbar-item replace to="kc" icon="column
@@ -17,11 +17,11 @@
   <van-tabbar-item replace to="lx" icon="comment">
     练习
   </van-tabbar-item>
-  <van-tabbar-item  @click="change" icon="user-circle-o
-">
+  <van-tabbar-item  @click="change" icon="friends">
     我的
   </van-tabbar-item>
 </van-tabbar>
+
     </div>
  
  
@@ -37,6 +37,7 @@ export default {
   props: {},
   data() {
     return {
+       active: 0,
     };
   },
   watch: {},

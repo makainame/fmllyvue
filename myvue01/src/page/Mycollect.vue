@@ -72,8 +72,8 @@ export default {
      async Changeclick(index,collect_id){
     //  console.log(this.collect_id)
       let { data: res } = await this.$http.put(`/api/app/collect/cancel/${collect_id}/1`);
-      this.$axios.get(
-        `https://365msmk.com/api/app/courseInfo/basis_id=${this.id}`
+      this.$http.get(
+        `/api/app/courseInfo/basis_id=${this.id}`
       )
       .then((msg) => {
         // console.log(msg.data.data.info);
@@ -84,9 +84,9 @@ export default {
   created() {},
   mounted() {
       this.id = this.$route.query.id;
-    this.$axios
+    this.$http
       .get(
-        `https://www.365msmk.com/api/app/collect?page=1&limit=10&type=1&`
+        `/api/app/collect?page=1&limit=10&type=1&`
       )
       .then((msg) => {
         console.log(msg)

@@ -123,25 +123,25 @@ export default {
   },
   created(){
 //   讲师详情头部
-    axios.get(`https://www.365msmk.com/api/app/teacher/${this.$route.query.id}`).then((res)=>{
+    this.$http.get(`/api/app/teacher/${this.$route.query.id}`).then((res)=>{
        
         this.teachList=res.data.data.teacher;
         console.log(this.teachList)
     })
     // 讲师详情内容之讲师介绍
-    axios.get(`https://www.365msmk.com/api/app/teacher/info/${this.$route.query.id}`).then((res)=>{
+    this.$http.get(`/api/app/teacher/info/${this.$route.query.id}`).then((res)=>{
         console.log(res)
         this.xiangxi=res.data.data;
         this.xiangarr=res.data.data.attr;
         console.log(this.xiangarr)
     })
     // 讲师详情内容之主讲课程
-    axios.post("https://www.365msmk.com/api/app/teacher/mainCourse").then((res)=>{
+    this.$http.post("/api/app/teacher/mainCourse").then((res)=>{
         console.log(res)
         this.zhujiang=res.data.data.list
         console.log(this.zhujiang)
     })
-    axios.get(`https://www.365msmk.com/api/app/teacher/${this.$route.query.id}`).then((res)=>{
+    this.$http.get(`/api/app/teacher/${this.$route.query.id}`).then((res)=>{
                    console.log(res)
            
                 this.gz=res.data.data.flag

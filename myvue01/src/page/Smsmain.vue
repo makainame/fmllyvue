@@ -9,7 +9,7 @@
       <img src="../assets/E-学生个人中心-已登录-恢复的_03.gif" alt />
       <img src="../assets/E-学生个人中心-已登录-恢复的_11_03.gif" alt class="img_tree" @click="remove"/>
       <ul>
-        <li>
+        <li @click="Tscontent">
           <p class="xf_tit">10</p>
           <p>我的课程</p>
           <span>-已购课程学习-</span>
@@ -99,6 +99,11 @@ export default {
     },
     goCollect(){
       this.$router.push({path:'/mycollect'})
+    },
+    Tscontent(){
+      this.$router.push({
+          path:"/tsk"
+      })
     }
   },
   created() {},

@@ -16,7 +16,7 @@
       show-error-message
     >
       <template #button>
-        <van-button  size="small" type="primary"   @click="but"  v-show="show"> 发送验证码 </van-button >
+         <van-button  size="small" type="primary"   @click="but"  v-show="show"> 发送验证码 </van-button >
          <van-button  size="small" type="primary"   v-show="!show"> 倒计时 {{count}}  </van-button >
       </template>
     </van-field>
@@ -81,7 +81,7 @@ export default {
         }
        }, 1000)
       }
-          this.$Toast(res.data.msg)
+          this.$toast(res.data.msg)
         });
     },
     Login() {

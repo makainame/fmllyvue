@@ -1,7 +1,8 @@
 <template>
   <div class='loading'>
-    <van-loading type="spinner" size="100" color="palevioletred" vertical>
-     <span style="color:palevioletred">加载中...</span> 
+    <van-loading type="spinner"  size="50" color="#1989fa" vertical>
+     <!-- <span style="color:palevioletred">加载中...</span>  -->
+     
     </van-loading>
   </div>
 </template>

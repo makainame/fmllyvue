@@ -1,11 +1,12 @@
 <template>
   <div class="detail">
+    <qriously ></qriously>
     <van-nav-bar title="课程详情" left-arrow @click-left="toGo">
       <template #right>
-        <van-icon name="cluster" size="18" />
+        <van-icon name="cluster" size="18" @click="Detail"/>
       </template>
     </van-nav-bar>
-    <button class="btn">立即报名</button>
+    <button class="btn" @click="btns">立即报名</button>
     <div class="stat_con">
       <p>{{ Start.title }}</p>
 
@@ -51,11 +52,15 @@
       <img src="../assets/微信图片_20200712170039.png" alt />
       <p>暂无评论</p>
     </div>
+   
   </div>
 </template>
 <script>
+import qriously from'../page/Qriously'
 export default {
-  components: {},
+  components: {
+    qriously,
+  },
   props: {},
   data() {
     return {
@@ -68,8 +73,11 @@ export default {
       data1:'1',
       data2:'',
       show1:0,
-      collect_id:""
-
+      collect_id:"",
+      isShow:false,
+     
+        jsid:'',
+        type:''
     };
   },
   watch: {},
@@ -84,16 +92,36 @@ export default {
   },
   computed: {},
   methods: {
+  async  btns() {
+    // alert(11111)
+          
+         let {data:res}= await this.$http.post(`/api/app/order/downOrder`,{
+              
+                    shop_id:this.id,
+                     type:this.type
+                  
+              })
+             console.log(res)
+             
+            //  this.type=res.data.course_type
+              if(res.code!=200){
+                    this.$toast(res.msg)
+                    return false
+              }
+    },
+    Detail(){
+        this.$store.state.isDetail=!this.$store.state.isDetail
+    },
     toGo() {
       this.$router.go(-1);
     },
     async Changeclick1() {
-      let { data: res } = await this.$http.post("https://365msmk.com/api/app/collect", {
+      let { data: res } = await this.$http.post("/api/app/collect", {
         course_basis_id: this.id,
         type: 1,
       });
-      this.$axios.get(
-        `https://365msmk.com/api/app/courseInfo/basis_id=${this.id}`
+      this.$http.get(
+        `/api/app/courseInfo/basis_id=${this.id}`
       )
       .then((msg) => {
         // console.log(msg.data.data.info);
@@ -104,7 +132,7 @@ export default {
      console.log(this.collect_id)
       let { data: res } = await this.$http.put(`/api/app/collect/cancel/${this.collect_id}/1`);
       this.$axios.get(
-        `https://365msmk.com/api/app/courseInfo/basis_id=${this.id}`
+        `/api/app/courseInfo/basis_id=${this.id}`
       )
       .then((msg) => {
         // console.log(msg.data.data.info);
@@ -112,13 +140,19 @@ export default {
       });
     },
   },
-  created() {},
+  created() {
+       this.type=this.$route.query.type
+     
+        localStorage.setItem("histype",this.type)
+     this.shop_id=this.$route.query.id;
+    //  console.log(this.couerseInfo.shop_id)
+  },
   mounted() {
-    // console.log(this.$route.query.id);
+  
     this.id = this.$route.query.id;
-    this.$axios
+    this.$http
       .get(
-        `https://365msmk.com/api/app/courseInfo/basis_id=${this.id}`
+        `/api/app/courseInfo/basis_id=${this.id}`
       )
       .then((msg) => {
         console.log(msg)
@@ -183,7 +217,7 @@ export default {
 //教师团队
 .tea {
   width: 100%;
-  height: 200px;
+  height: 350px;
   margin-top: 15px;
   background: #ffffff;
   padding-left: 30px;
@@ -210,7 +244,7 @@ export default {
 //课程大纲
 .tat_cj {
   width: 100%;
-  height: 150px;
+  height:350px;
   margin-top: 15px;
   background: #ffffff;
   padding-left: 30px;
@@ -234,7 +268,7 @@ export default {
 .teat_comment {
   width: 100%;
   height: 350px;
-  margin-top: 15px;
+  margin-top: 30px;
   background: #ffffff;
   padding-left: 20px;
   box-sizing: border-box;
