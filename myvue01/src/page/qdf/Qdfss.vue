@@ -10,10 +10,10 @@
             />
           </span>
           <span >
-            <input  placeholder="请输入内容" v-model="text" class="input" @click="inp"/>
+            <input  placeholder="请输入内容" @keyup.enter="qdf_fh2()" v-model="text" class="input" style="width:200px" @click="inp"/>
           </span>
-          <span @click="qdf_fh1()" v-if="show">取消</span>
-          <span @click="qdf_fh2()" v-else style="color:black">搜索</span>
+          <span @click="qdf_fh1()" v-if="show"  class="span">取消</span>
+          <span @click="qdf_fh2()" v-else style="color:black" class="span">搜索</span>
         </header>
              
      <ul class="qdf_ul">
@@ -144,11 +144,13 @@ export default {
             })
             console.log(bool)
             if(!bool){
-              arr.push(this.text)
+               if(arr.length>=5){
+                   arr.pop()
+               }
+                  arr.unshift(this.text)
             }
-           } else {
-              arr.push(this.text)
            }
+         
              
            console.log(arr)
            this.arrlist=his
@@ -335,6 +337,10 @@ export default {
     color: #44a426;
     font-size: .42667rem;
     font-size: 4.26667vw;
+}
+.span{
+  float: right;
+  margin-top: 2px;
 }
 </style>
 

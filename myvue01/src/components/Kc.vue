@@ -69,32 +69,8 @@
   @load="onLoad"
 >
   <van-cell  >
-<ul class="qdf_ul">
-      <li class="qdf_li" v-for="(item,index) in axioslist" :key="index" @click="qdf_tzxqy(item.id)">
-        <p class="qdf_title">
-          <font>{{item.title}}</font>
-          </p>
-          <div class="qdf_time">
-            <p class="qdf_after">{{item.end_play_date| ttime(item.end_play_date) }}</p>
-            <p>共{{item.total_periods}}课时</p>
-          </div>
-          <div class="qdf_teacher">
-        <div class="qdf_teacher_item" v-for="(item,index) in item.teachers_list" :key="index">
-<img :src="item.teacher_avatar" alt="">
-<font>{{item.teacher_name}}</font>
-        </div>
-          </div>
-          <p class="qdf_info">
-            <span class="qdf_person">
-              {{item.sales_num}}人已报名
-            </span>
-            <font class="qdf_free">{{item.price |totext}}</font>
-          </p>
-      </li>
-    </ul>
 
-
-
+<courselist  :contentlist="axioslist"></courselist>
   </van-cell>
 </van-list>
 
@@ -106,11 +82,12 @@
 </template>
 
 <script>
-
+import courselist from '../page/Couerlist'
 export default {
   name:"kc",
   components: {
    scroll,
+   courselist
   },
   props: {},
   filters:{

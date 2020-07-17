@@ -4,23 +4,23 @@
       <img src="../assets/C-_Users_lenovo_Desktop_E-学生个人中心-已登录_01.gif" alt />
     </div>
     <div class="user-xf">
-      <img src="../assets/E-学生个人中心-已登录-恢复的_04.gif" alt class="img_first" />
-      <span>小文师弟</span>
+      <img :src="imageFn" alt class="img_first" />
+      <span>{{nicknameFn}}</span>
       <img src="../assets/E-学生个人中心-已登录-恢复的_03.gif" alt />
       <img src="../assets/E-学生个人中心-已登录-恢复的_11_03.gif" alt class="img_tree" @click="remove"/>
       <ul>
         <li @click="Tscontent">
-          <p class="xf_tit">10</p>
-          <p>我的课程</p>
+          <p class="xf_tit">{{coursesFn}}</p>
+          <p>我的课程  </p>
           <span>-已购课程学习-</span>
         </li>
-        <li>
-          <p class="xf_tit">5</p>
+        <li @click="$router.push('/home/yk')">
+          <p class="xf_tit">{{integralFn}}</p>
           <p>我的预约</p>
           <span>-一对一老师预约-</span>
         </li>
         <li>
-          <p class="xf_tit">0</p>
+          <p class="xf_tit">{{otoFn}}</p>
           <p>我的课程</p>
           <span>-查看剩余学习币-</span>
         </li>
@@ -86,7 +86,14 @@ export default {
   components: {},
   props: {},
   data() {
-    return {};
+    return {
+      num:null,
+      nicknameFn:'',
+      imageFn:'',
+      coursesFn:'',
+      integralFn:'',
+      otoFn:''
+    };
   },
   watch: {},
   computed: {},
@@ -104,10 +111,23 @@ export default {
       this.$router.push({
           path:"/tsk"
       })
+    },
+  async  GetinfoFn() {
+           let {data:res} =await this.$http.get("api/app/getUCenterInfo")
+             console.log(res)
+             this.nicknameFn=res.data.nickname
+             this.imageFn=res.data.avatar
+             this.coursesFn=res.data.courses,
+             this.integralFn=res.data.integral,
+             this.otoFn=res.data.oto
+             console.log(res.data.nickname)
     }
   },
   created() {},
-  mounted() {}
+  mounted() {
+     this.num=localStorage.getItem("hisnum")
+     this.GetinfoFn()
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -154,7 +174,7 @@ export default {
     height: 60px;
   }
   span {
-    font-size: 16px;
+    // font-size: 16px;
     font-weight: bold;
   }
   .img_tree {
@@ -180,6 +200,7 @@ export default {
         color: orange;
       }
       span {
+        width: 100px;
         font-size: 12px;
         color: #cccccc;
       }
@@ -233,7 +254,7 @@ export default {
 }
 .sms-act{
   width:100%;
-  height:60px;
+  // height:60px;
   // background:;
    background: linear-gradient(to right, #ff944c, #fb5a00);
     border-radius:50px;

@@ -6,7 +6,8 @@
         <van-icon name="cluster" size="18" @click="Detail"/>
       </template>
     </van-nav-bar>
-    <button class="btn" @click="btns">立即报名</button>
+    <button class="btn" @click="btns" v-if="isBuy==0">立即报名</button>
+    <button class="btn" @click="btns"  v-else>立即学习</button>
     <div class="stat_con">
       <p>{{ Start.title }}</p>
 
@@ -75,7 +76,7 @@ export default {
       show1:0,
       collect_id:"",
       isShow:false,
-     
+        isBuy:false,
         jsid:'',
         type:''
     };
@@ -141,14 +142,15 @@ export default {
     },
   },
   created() {
-       this.type=this.$route.query.type
+      
      
-        localStorage.setItem("histype",this.type)
-     this.shop_id=this.$route.query.id;
+     
     //  console.log(this.couerseInfo.shop_id)
   },
   mounted() {
-  
+      localStorage.setItem("histype",this.type)
+     this.shop_id=this.$route.query.id;
+    this.type=this.$route.query.type
     this.id = this.$route.query.id;
     this.$http
       .get(
@@ -163,6 +165,8 @@ export default {
         // console.log(this.Start);
         // console.log(msg)
         this.show1 = msg.data.data.info.is_collect
+        this.isBuy=msg.data.data.info.is_buy
+        console.log(msg.data.data.info.is_buy)
       });
   },
 };

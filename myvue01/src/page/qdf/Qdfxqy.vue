@@ -96,6 +96,7 @@
       </div>
       <!-- 立即报名布局开始 -->
       <button  @click="qdf_tzxx()" class="course-btn van-button van-button--default van-button--normal">
+        <span  class="van-button__text">立即报名</span>
         <span  class="van-button__text">立即学习</span>
       </button>
       <!-- 立即报名布局结束 -->
